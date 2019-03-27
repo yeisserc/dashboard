@@ -1,0 +1,136 @@
+<% include ../partials/head %>
+
+<div class="container">
+  <div class="sm-6">
+    <div class="sm-3">
+    <input type="checkbox" id="select_all">
+    <label class="custom-control-label ml-2" for="customCheck1">Seleccionar todos</label>
+    <table class="table table-bordered table-hover table-dark">
+      <thead>
+            <tr>
+              <th>Seleccionar</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Edad</th>
+              <th>Categorias</th>
+            </tr>
+          </thead>
+        <!-- ITEMS -->
+        <tbody>
+        <% for(var i = 0; i < products.length; i++) { %>
+          <div class="col-md-4">
+            <tr>
+              <td> <input type="checkbox" id="inputCheck" class="mt-1"></td>
+              <td><%= products[i].name %></td>
+              <td><%= products[i].category %></td>
+              <td><%= products[i].price %></td>
+              <td class="badge badge-pill">Default
+              <a><i class="fas fa-times mx-1"></i></a></td>
+            </tr>
+        <% } %>
+      </tbody>
+      </table>
+
+  <div class="row">
+    <!-- pagination -->
+    <% if(pages > 0) { %> <!-- show pagination if there is pages -->
+      <nav class="mx-auto">
+        <ul class="pagination">
+          <!-- FIRST ITEM -->
+          <% if(current == 1) { %>
+            <li class="page-item disabled">
+              <a class="page-link" href="#">First</a>
+            </li>
+          <% } else { %>
+            <li class="page-item">
+              <a class="page-link" href="/products/1">First</a>
+            </li>
+          <% } %>
+
+          <!-- ITEMS  -->
+          <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+          <% if(i !== 1) { %>
+            <li class="page-item disabled">
+              <a class="page-link" href="#">...</a>
+            </li>
+          <% } %>
+          <% for(; i <= (Number(current) + 4) && i <= pages; i++) { %>
+            <% if(i == current) { %>
+              <li class="page-item active">
+                <a class="page-link" href="<%= i %>">
+                  <%= i %>
+                </a>
+              </li>
+            <% } else { %>
+              <li class="page-item">
+                <a class="page-link" href="/products/<%= i %>">
+                  <%= i %>
+                </a>
+              </li>
+            <% } %>
+            <% if (i == Number(current) + 4 && i < pages) { %>
+               <li class="page-item disabled">
+                 <a class="page-link" href="#">...</a>
+               </li>
+            <% } %>
+          <% } %>
+
+          <!-- LAST ITEM -->
+          <% if(current == pages) { %>
+            <li class="page-item disabled">
+              <a class="page-link" href="#">
+                Last
+              </a>
+            </li>
+          <% } else { %>
+            <li class="page-item">
+              <a class="page-link" href="/products/<%= pages %>">
+                Last
+              </a>
+            </li>
+          <% } %>
+        </ul>
+      </nav>
+    <% } %>
+  </div>
+</div>
+
+
+<div class="row">
+    <div class="form-group sm-6">
+
+
+        <label for="select">Categoria</label>
+           <select required="required" id="categoria" name="categoria" class="form-control">
+             <option value="" selected="selected" name="categoriaSeleccionada">Seleccionar*</option>
+             <option value="1">Whatsapp</option>
+     </div>
+     <div class="sm-6">
+       <button type="button" class="btn btn-primary">Aceptar</button>
+     <!-- </div> -->
+   <!-- </div> -->
+ <!-- </div> -->
+      </div>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+        <!-- Selecionar todo -->
+        <script>
+          $('#select_all').click(function() {
+            var c = this.checked;
+            $(':checkbox').prop('checked',c);
+        });
+      </script>
+
+      <!-- <script>
+      $(function() {
+    $('#select_all').change(function(){
+        var checkboxes = $(this).closest('table').find(':checkbox');
+        if($(this).prop('checked')) {
+          checkboxes.prop('checked', true);
+        } else {
+          checkboxes.prop('checked', false);
+        }
+    });
+});
+        </script> -->
+<% include ../partials/footer %>
