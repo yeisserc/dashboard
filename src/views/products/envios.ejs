@@ -1,0 +1,91 @@
+<% include ../partials/head %>
+  <div class="row">
+    <!--FORM-->
+    <div class="col-md-5">
+      <div class="card">
+        <div class="card-body">
+          <form action="/enviar" method="post">
+            <h3 class="">Enviar</h3>
+            <div class="form-group">
+              <label for="select">Categoria:</label>
+                 <select id="categoria" name="categoria" class="categoria form-control">
+                   <option selected="selected" name="categoriaSeleccionada">Seleccionar*</option>
+                 </select>
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" name="descripcion" id="mensaje" cols="80"
+                placeholder="Agrega un mensaje"
+                ></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit" id="enviar">
+              Enviar
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIST -->
+    <div class="col-md-7">
+      <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th>N°</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(var i=0; i <cats.length; i++) { %>
+          <tr>
+            <td><%= i + 1%></td>
+            <td><strong><%= cats[i].nombre %></strong></td>
+            <td><%= cats[i].descripcion %></td>
+          </tr>
+        <% } %>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+<script>
+  $(document).ready(function () {
+    //CARGAR CATEGORIAS-----------------------------
+    $.ajax({
+        url: '/cargar-categorias',
+        type: "POST",
+        success : function(res){
+          var options= $("#categoria");
+          $.each(res, function(item) {
+           options.append($("<option/>").val(this._id).text(this.nombre));
+          });
+         console.log('lista de categorias', res); }
+  });
+  //CATEGORIA SELECCIONADA
+  $("select.categoria").change(function(){
+    cat = $(this).children("option:selected").text();
+    console.log('categoria selecionada', cat);
+  });
+
+  //ENVIAR
+  $("#agregar").click(function() {
+    var arreglo= [];
+      $(".chk:checked").each(function() {
+        arreglo.push($(this).val());
+      });
+      if(arreglo.length > 0) {
+        console.log('elementos selecionados',arreglo);
+        $.ajax({
+      url: '/update-user',
+      type: "POST",
+      data: {arreglo},
+      success : function(res){
+        console.log('la respuesta del server es', res); }
+     });
+   }});
+});
+</script>
+<% include ../partials/footer %>

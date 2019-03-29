@@ -9,9 +9,9 @@
     <table class="table table-bordered table-striped">
       <thead class="thead-dark">
             <tr>
-              <th scope="col">Se</th>
-              <th>Nombre</th>
-              <th>Apellido</th>
+              <th scope="col" style="width:15%;">Seleccionar</th>
+              <th style="width:22%;">Nombre</th>
+              <th style="width:22%;">Apellido</th>
               <th>Edad</th>
               <th>Categorias</th>
             </tr>
@@ -21,7 +21,7 @@
         <% for(var i = 0; i < products.length; i++) { %>
           <!-- <div class="col-md-4"> -->
             <tr>
-              <td> <input type="checkbox" id="inputCheck" value="<%= products[i]._id %>" class="chk" class="mt-1"></td>
+              <td class=" text-center"> <input type="checkbox" id="inputCheck" value="<%= products[i]._id %>" class="chk" class="mt-1"></td>
               <td><%= products[i].name %></td>
               <td><%= products[i].category %></td>
               <td><%= products[i].price %></td>
@@ -29,10 +29,10 @@
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">×</span>
   </button></span> -->
-  <td>
-    <span class="badge badge-success">Whatsapp</span>
-   <span class="badge badge-primary">Facebook</span>
- </td>
+            <td id="tags">
+              <!-- <span class="badge badge-success">products[i].categoria[i]</span> -->
+             <!-- <span class="badge badge-primary">Facebook</span> -->
+           </td>
             </tr>
             <% } %>
       </tbody>
@@ -147,27 +147,25 @@
       $("select.categoria").change(function(){
         cat = $(this).children("option:selected").text();
         console.log('categoria selecionada', cat);
+        cati = $(this).children("option:selected").val();
+        console.log('ID de categoria selecionada', cati);
       });
 	        $("#agregar").click(function() {
-            var chkArray= [];
+            var arreglo= [],item;
+            // $("tr td:nth-child(5)").append("span").addClass("badge badge-success").text(cat);
               $(".chk:checked").each(function() {
-                chkArray.push($(this).val());
-              });
-              if(chkArray.length > 0) {
-                console.log('elementos selecionados',chkArray);
+                arreglo.push($(this).val());
+                item = $(this).val();
                 $.ajax({
-              url: '/update-user',
-              type: "POST",
-              data: {chkArray},
-              success : function(res){
-                console.log('la respuesta del server es', res); }
-	           });
-           }});
-          //  // $("#categoria")
-          //   $.getJSON("/traer-categorias", function(result) {
-          //     var options = $("#options");
-          // //don't forget error handling!
-          // });
+                  url: '/update-user',
+                  type: "POST",
+                  data: {item,cat},
+                  success : function(res){
+                    console.log('la respuesta del server es', res); }
+                  });
+                console.log('id del user es',item);
+              });
+           });
 
        });
       //---------------------------------------------

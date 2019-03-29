@@ -3,37 +3,80 @@ const faker  = require('faker');
 const Product = require('../models/product');
 const Cat = require('../models/categoria');
 const User = require('../models/user');
+// const sgMail = require('@sendgrid/mail');
 
+//---------HOME
 router.get('/', (req, res, next) => {
   res.render('index');
 });
 
+//---------PESTAÑA CATEGORIAS
 router.get('/add-category', async (req, res) => {
   const cats = await Cat.find();
   res.render('products/add-category', {cats});
 });
 
-router.post('/update-user', (req,res) => {
-  var cat= req.body.cat; //categoria seleccionada
-  console.log(cat);
-  var miArray = [ 2, 4, 6, 8, 10 ];
-  miArray.forEach( function(valor, indice, array) {
-    console.log("En el índice " + indice + " hay este valor: " + valor);
-  });
-  // for(let i=0; i<length; i++)
-  // User.findOneAndUpdate({_id: valor}, {$set:{'categoria[]': cat }},function(err, doc){
-  //   if(err){
-  //       console.log("Error al cargar los datos!");
-  //   } else {
-           // res.json('los datos se agregaron correctemente');
-  // }});
+//---------PESTAÑA ENVIOS
+router.get('/envios', async (req, res) => {
+  const cats = await Cat.find();
+  res.render('products/envios', {cats});
 });
 
+//---------Enviar DAtos
+router.post('/enviar', async (req,res) => {
+  // var cat = req.body.categoria;
+  // console.log(cat);
+  // switch (cat) {
+  //   case 1:
+  //     //---------------Email---
+  //     sgMail . setApiKey ( process . env . SENDGRID_API_KEY );
+  //       const  msg  = {
+  //         a : [ ' destinatario1@ejemplo.org ' , ' destinatario2@ejemplo.org ' ],
+  //         de :  ' sender@example.org ' ,
+  //         Asunto :  ' Hola mundo ' ,
+  //         texto :  ' Hola mundo llano! ' ,
+  //         html :  ' <p> Hello HTML world! </p> ' ,
+  //       };
+  //       sgMail . sendMultiple (msg);
+  //
+  //   break;
+  //   case 2: break;
+  //   case 3: break;
+  //   case 4: break;
+  //
+  //
+  //   case expression:
+  //
+  //     break;
+  //   default:
+  //
+  // }
+  const users = await Product.findById();
+
+
+})
+
+//---------AGREGAR CATEGORIA A USUARIOS
+router.post('/update-user', async (req,res) => {
+  var cat= req.body.cat; //categoria seleccionada
+  console.log('llego categoria',cat);
+  var item=req.body.item;
+  console.log('llego id item',item);
+  // var actual =req.body.current;
+  // console.log('page actual',actual);
+  var result = await Product.findOneAndUpdate({_id : item}, {$set:{categoria : {nombre : cat} }});
+      console.log(result);
+});
+
+
+//---------CARGAR CATEGORIAS EN SELECT
 router.post('/cargar-categorias', async(req,res) => {
     const cats = await Cat.find();
     res.json(cats);
 });
 
+
+//--------- AGREGAR NUEVA CATEGORIA
 router.post('/add-category', (req, res, next) => {
   const cat = new Cat();
   cat.descripcion = req.body.descripcion;
@@ -44,6 +87,7 @@ router.post('/add-category', (req, res, next) => {
   });
 });
 
+//---------OBTENER PAGINA "I"
 router.get('/products/:page', (req, res, next) => {
   let perPage = 9;
   let page = req.params.page || 1;
@@ -64,18 +108,22 @@ router.get('/products/:page', (req, res, next) => {
     });
 });
 
+
+//---------PESTAÑA EDITAR
 router.get('/edit/:id', async (req, res, next) => {
   const nuevo = await Cat.findById(req.params.id);
   console.log(nuevo)
   res.render('edit', { nuevo });
 });
 
+//---------GUARDAR CAMBIOS DE "ID"
 router.post('/edit/:id', async (req, res, next) => {
   const { id } = req.params;
   await Cat.update({_id: id}, req.body);
   res.redirect('/add-category');
 });
 
+//---------BORRAR INDICE "ID"
 router.get('/delete/:id', async (req, res, next) => {
   let { id } = req.params;
   await Cat.remove({_id: id});
@@ -84,7 +132,7 @@ router.get('/delete/:id', async (req, res, next) => {
 
 // to generate fake data
 router.get('/generate-fake-data', (req, res, next) => {
-  for(let i = 0; i < 90; i++) {
+  for(let i = 0; i < 12; i++) {
     const product = new Product();
     product.category = faker.commerce.department();
     product.name = faker.commerce.productName();
