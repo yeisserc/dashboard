@@ -22,6 +22,7 @@ router.post('/add-categoria', (req, res, next) => {
   });
 });
 
+
 router.get('/products/:page', (req, res, next) => {
   let perPage = 9;
   let page = req.params.page || 1;

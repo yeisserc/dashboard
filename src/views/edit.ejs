@@ -1,4 +1,4 @@
-<% include partials/_header %>
+<% include partials/head %>
 
 <div class="container">
   <div class="row">
@@ -8,12 +8,12 @@
         <div class="card-body">
           <form action="/edit/<%= nuevo._id %>" method="post">
             <div class="form-group">
-              <input class="form-control" type="text" name="title" placeholder="Nombre" value="<%= nuevo.name %>">
+              <input class="form-control" type="text" name="title" placeholder="Nombre" value="<%= nuevo.nombre %>">
             </div>
             <div class="form-group">
               <textarea class="form-control" name="description" cols="80"
-                placeholder="Agregar una descripcion"
-                ><%= nuevo.category %></textarea>
+                placeholder="Agregar una descripcion">
+                <%= nuevo.descripcion %></textarea>
             </div>
             <button class="btn btn-primary" type="submit">
               Update
@@ -25,4 +25,4 @@
   </div>
 </div>
 
-<% include partials/_footer%>
+<% include partials/footer %>

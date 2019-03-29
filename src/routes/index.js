@@ -1,23 +1,46 @@
 const router = require('express').Router();
 const faker  = require('faker');
 const Product = require('../models/product');
+const Cat = require('../models/categoria');
+const User = require('../models/user');
 
 router.get('/', (req, res, next) => {
   res.render('index');
 });
 
-router.get('/add-product', async (req, res) => {
-  const products = await Product.find();
-  res.render('products/add-product', {products});
+router.get('/add-category', async (req, res) => {
+  const cats = await Cat.find();
+  res.render('products/add-category', {cats});
 });
 
-router.post('/add-product', (req, res, next) => {
-  const product = new Product();
-  product.category = req.body.descripcion;
-  product.name = req.body.nombre;
-  product.save((err) => {
+router.post('/update-user', (req,res) => {
+  var cat= req.body.cat; //categoria seleccionada
+  console.log(cat);
+  var miArray = [ 2, 4, 6, 8, 10 ];
+  miArray.forEach( function(valor, indice, array) {
+    console.log("En el índice " + indice + " hay este valor: " + valor);
+  });
+  // for(let i=0; i<length; i++)
+  // User.findOneAndUpdate({_id: valor}, {$set:{'categoria[]': cat }},function(err, doc){
+  //   if(err){
+  //       console.log("Error al cargar los datos!");
+  //   } else {
+           // res.json('los datos se agregaron correctemente');
+  // }});
+});
+
+router.post('/cargar-categorias', async(req,res) => {
+    const cats = await Cat.find();
+    res.json(cats);
+});
+
+router.post('/add-category', (req, res, next) => {
+  const cat = new Cat();
+  cat.descripcion = req.body.descripcion;
+  cat.nombre = req.body.nombre;
+  cat.save((err) => {
     if (err) { throw err; }
-    res.redirect('/add-product');
+    res.redirect('/add-category');
   });
 });
 
@@ -42,21 +65,21 @@ router.get('/products/:page', (req, res, next) => {
 });
 
 router.get('/edit/:id', async (req, res, next) => {
-  const nuevo = await Product.findById(req.params.id);
+  const nuevo = await Cat.findById(req.params.id);
   console.log(nuevo)
   res.render('edit', { nuevo });
 });
 
 router.post('/edit/:id', async (req, res, next) => {
   const { id } = req.params;
-  await Product.update({_id: id}, req.body);
-  res.redirect('/add-product');
+  await Cat.update({_id: id}, req.body);
+  res.redirect('/add-category');
 });
 
 router.get('/delete/:id', async (req, res, next) => {
   let { id } = req.params;
-  await Product.remove({_id: id});
-  res.redirect('/add-product');
+  await Cat.remove({_id: id});
+  res.redirect('/add-category');
 });
 
 // to generate fake data
@@ -71,7 +94,7 @@ router.get('/generate-fake-data', (req, res, next) => {
       if (err) { return next(err); }
     });
   }
-  res.redirect('/add-product');
+  res.redirect('/add-category');
 });
 
 module.exports = router;
