@@ -59,8 +59,7 @@ router.post('/enviar', async (req,res) => {
 //---------AGREGAR CATEGORIA A USUARIOS
 router.post('/update-user', async (req,res) => {
   var cat= req.body.cat; //categoria seleccionada
-  console.log('llego categoria',cat);
-  var item=req.body.item;
+  var item=req.body.item; //id usuario
   console.log('llego id item',item);
   // var actual =req.body.current;
   // console.log('page actual',actual);
