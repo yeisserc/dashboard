@@ -30,7 +30,7 @@ var UserSchema = new Schema({
 		token 	: String,
 		secret  : String,
 	},
-	categoria : [{nombre: String}],
+	categoria : [],
 	CheckWhatsapp : Boolean,
 	createdAt	  : {type: Date, default: Date.now} // Fecha de creación
 });

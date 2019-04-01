@@ -30,8 +30,12 @@
     <span aria-hidden="true">×</span>
   </button></span> -->
             <td id="tags">
-              <!-- <span class="badge badge-success">products[i].categoria[i]</span> -->
+              <% for(let j = 0; j < products[i].categoria.length; j++) { %>
+
+              <span class="badge badge-success"><%=products[i].categoria[j] %></span>
              <!-- <span class="badge badge-primary">Facebook</span> -->
+
+             <% } %>
            </td>
             </tr>
             <% } %>
@@ -114,7 +118,7 @@
            <button type="button" class="btn btn-primary" id="agregar">Aceptar</button>
      </div>
 
-     <div class="col-sm-3">
+     <div class="col-sm-4">
      </div>
      <!-- </div> -->
    <!-- </div> -->
@@ -165,8 +169,8 @@
                   });
                 console.log('id del user es',item);
               });
+              location.reload();
            });
-
        });
       //---------------------------------------------
       </script>

@@ -3,6 +3,7 @@ const faker  = require('faker');
 const Product = require('../models/product');
 const Cat = require('../models/categoria');
 const User = require('../models/user');
+var page;
 // const sgMail = require('@sendgrid/mail');
 
 //---------HOME
@@ -22,7 +23,7 @@ router.get('/envios', async (req, res) => {
   res.render('products/envios', {cats});
 });
 
-//---------Enviar DAtos
+//---------Enviar Datos
 router.post('/enviar', async (req,res) => {
   // var cat = req.body.categoria;
   // console.log(cat);
@@ -60,11 +61,15 @@ router.post('/enviar', async (req,res) => {
 router.post('/update-user', async (req,res) => {
   var cat= req.body.cat; //categoria seleccionada
   var item=req.body.item; //id usuario
-  console.log('llego id item',item);
-  // var actual =req.body.current;
-  // console.log('page actual',actual);
-  var result = await Product.findOneAndUpdate({_id : item}, {$set:{categoria : {nombre : cat} }});
-      console.log(result);
+  var result = await Product.findOneAndUpdate({'_id' : item}, {$push:{categoria: cat}}, {new: true});
+       // var result= await Product.findById(item);
+       // if(!result.categoria) {
+
+       // result.categoria.forEach((profile) => {
+       //   console.log(profile);
+       // })
+       console.log(result);
+
 });
 
 
@@ -89,7 +94,7 @@ router.post('/add-category', (req, res, next) => {
 //---------OBTENER PAGINA "I"
 router.get('/products/:page', (req, res, next) => {
   let perPage = 9;
-  let page = req.params.page || 1;
+  page = req.params.page || 1;
 
   Product
     .find({}) // finding all documents
