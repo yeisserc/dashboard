@@ -31,6 +31,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(indexRoutes);
 
 // starting the server
-app.listen(app.get('port'), () => {
+app.listen(app.get('port'), 'juntosporsantafe.com', () => {
   console.log('server on port', app.get('port'));
 });
