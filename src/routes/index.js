@@ -149,4 +149,43 @@ router.get('/generate-fake-data', (req, res, next) => {
   res.redirect('/add-category');
 });
 
+//---------datatable prueba
+router.get('/datatables', async (req, res, next) => {
+  res.render('datatables', { });
+});
+
+router.get('/datatables-data', async (req, res) => {
+  let draw = parseInt(req.query.draw, 10);
+  let start = parseInt(req.query.start, 10);
+  let length = parseInt(req.query.length, 10);
+
+  if(isNaN(draw) || isNaN(start) || isNaN(length)) {
+      return false;
+  }
+
+  let recordsTotal = await User.count({});
+
+  let query = {};
+  if(req.query.search.value != null && req.query.search.value != "") {
+      // query = {
+      //   $or: [{cedula: req.query.search.value}, {civ: req.query.search.value}, {nombre: req.query.search.value}]
+      // }
+      let value = req.query.search.value;
+      query = {
+      $or: [{name: new RegExp(value, "i")}]
+      }
+  }
+  console.log('query', query);
+  let recordsFiltered = await User.count(query);
+
+  let users;
+  try {
+    users = await User.find( query ).limit(length).skip(start);
+  } catch(e) {
+      console.log('Ha ocurrido un error', e);
+      return res.json({error: 'Ha ocurrido un error'});
+  }
+  return res.json({data: users, recordsTotal, recordsFiltered});
+});
+
 module.exports = router;
