@@ -11,12 +11,19 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^3.0.5",
     "body-parser": "^1.18.2",
+    "connect-mongo": "^2.0.3",
     "datatables": "^1.10.18",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
+    "express-session": "^1.16.1",
+    "express-validator": "^5.3.1",
     "faker": "^4.1.0",
-    "mongoose": "^4.13.3"
+    "mongoose": "^4.13.3",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "prompt-sync": "^4.1.6"
   },
   "devDependencies": {
     "nodemon": "^1.12.1"

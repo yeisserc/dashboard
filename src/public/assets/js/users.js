@@ -2,18 +2,21 @@ $(function() {
     let products;
     let fieldsNames = [
         {
-            data: 'local.nombre'
+            data: 'local.nombre',
+            "defaultContent": "No asignado"
         },
         {
-            data: 'local.apellido'
+            data: 'local.apellido',
+            "defaultContent": "No asignado"
         },
         {
-            data: 'local.id_ciudad'
+            data: 'local.id_ciudad',
+            "defaultContent": "No asignado"
         }
     ];
 
     products = $("#datatable").DataTable({
-        "ajax": `/datatables-data`,
+        "ajax": `/user/datatables-data`,
         "columns": fieldsNames,
         // "columnDefs": [
         //     {
@@ -30,7 +33,7 @@ $(function() {
         //         "targets": 3
         //     }
         // ],
-        "pageLength": 5,
+        "pageLength": 20,
         "processing": true,
         "serverSide": true,
         "searching": false,
