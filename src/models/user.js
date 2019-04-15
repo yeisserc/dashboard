@@ -30,7 +30,7 @@ var UserSchema = new Schema({
 		token 	: String,
 		secret  : String,
 	},
-	categoria : [],
+	cats : [{ type:Schema.ObjectId, ref:'Categoria' }],
 	CheckWhatsapp : Boolean,
 	createdAt	  : {type: Date, default: Date.now} // Fecha de creación
 });
@@ -39,4 +39,4 @@ var UserSchema = new Schema({
 // partes de la aplicación
 var User = mongoose.model('User', UserSchema);
 
-module.exports = User
+module.exports = User;

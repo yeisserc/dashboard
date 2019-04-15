@@ -1,5 +1,6 @@
 $(function() {
     let tableUsuarios;
+    let selectAll = false;
     // let fieldsNames = [
     //     {
     //         "defaultContent": ""
@@ -17,24 +18,27 @@ $(function() {
     //         "defaultContent": "No asignado"
     //     }
     // ];
-    let fieldsNames = [
-        {
-            "defaultContent": "no"
-        },
-        {
-            "defaultContent": "No asignado"
-        },
-        {
-            "defaultContent": "No asignado"
-        },
-        {
-            "defaultContent": "No asignado"
-        }
-    ];
+    // let fieldsNames = [
+    //     {
+    //         "defaultContent": "no"
+    //     },
+    //     {
+    //         "defaultContent": "No asignado"
+    //     },
+    //     {
+    //         "defaultContent": "No asignado"
+    //     },
+    //     {
+    //         "defaultContent": "No asignado"
+    //     },
+    //     {
+    //         "defaultContent": "No asignado"
+    //     }
+    // ];
 
     tableUsuarios = $("#datatable").DataTable({
         "ajax": `/user/datatables-data`,
-        "columns": fieldsNames,
+        // "columns": fieldsNames,
         // columnDefs: [ {
         //     orderable: false,
         //     className: 'select-checkbox',
@@ -51,6 +55,26 @@ $(function() {
                'checkboxes': {
                   'selectRow': true
                }
+            },
+            {
+                'targets': 4,
+                "defaultContent": "No asignado",
+                "render": function ( data, type, row ) {
+                    let catsNombres = [];
+                    for(let i = 0; i < data.length; i++) {
+                        catsNombres.push(data[i].nombre);
+                    }
+                    return catsNombres.join(", ");
+                },
+            },
+            {
+                // The `data` parameter refers to the data for the cell (defined by the
+                // `data` option, which defaults to the column being worked with, in
+                // this case `data: 0`.
+                "render": function ( data, type, row ) {
+                    return '<a href="#" class="btn btn-round btn-danger btn-icon btn-sm desactivate"><i class="fas fa-times"></i></a>';
+                },
+                "targets": 5
             }
          ],
          'select': {
@@ -80,6 +104,7 @@ $(function() {
                             type: "POST",
                             success : function(res) {
                                 let options = $("#categoria");
+                                options.empty();
                                 $.each(res, function(item) {
                                     options.append($("<option/>").val(this._id).text(this.nombre));
                                 });
@@ -107,36 +132,38 @@ $(function() {
     $("#btn-modal-aceptar").click(function() {
         console.log("entro");
         var rows_selected = tableUsuarios.column(0).checkboxes.selected();
-        console.log(rows_selected);
         let ids = [];
         $.each(rows_selected, function(index, rowId){
             console.log(rowId);
             ids.push(rowId);
         });
         let categoria = $("#categoria").val();
+        console.log($(".dt-checkboxes-select-all"));
+        // let selectAll = $(".dt-checkboxes-select-all > input[type='checkbox']").is(':checked');
+        let selectAll = $(".dt-checkboxes-select-all > input[type='checkbox']").prop('checked');
         let obj = {
             ids,
-            categoria
+            categoria,
+            selectAll
         };
 
         console.log(obj);
-        // $.post( "/user/addCategory", obj, function() {
-        //     $('#myModal').modal('hide');
-        //     // showAlert("success", "Cliente editado correctamente");
-
-        //     tableUsuarios.ajax.reload();
-        // })
-        // .fail(function(data) {
-        //     showAlert("danger", "Ha ocurrido un error");
-        //     // if(data.responseJSON && data.responseJSON.errors) {
-        //     //     for(let i = 0; i < data.responseJSON.errors.length; i++) {
-        //     //         $(`#label-${data.responseJSON.errors[i].param}-edit`).addClass("text-danger");
-        //     //         $(`#${data.responseJSON.errors[i].param}-edit`).addClass("is-invalid");
-        //     //         $(`#div-text-error-${data.responseJSON.errors[i].param}-edit`).show();
-        //     //         $(`#text-error-${data.responseJSON.errors[i].param}-edit`).text(data.responseJSON.errors[i].msg);
-        //     //     }
-        //     // }
-        // });
+        $.post( "/user/addCategory", obj, function() {
+            $('#myModal').modal('hide');
+            // showAlert("success", "Cliente editado correctamente");
+            tableUsuarios.ajax.reload();
+        })
+        .fail(function(data) {
+            showAlert("danger", "Ha ocurrido un error");
+            // if(data.responseJSON && data.responseJSON.errors) {
+            //     for(let i = 0; i < data.responseJSON.errors.length; i++) {
+            //         $(`#label-${data.responseJSON.errors[i].param}-edit`).addClass("text-danger");
+            //         $(`#${data.responseJSON.errors[i].param}-edit`).addClass("is-invalid");
+            //         $(`#div-text-error-${data.responseJSON.errors[i].param}-edit`).show();
+            //         $(`#text-error-${data.responseJSON.errors[i].param}-edit`).text(data.responseJSON.errors[i].msg);
+            //     }
+            // }
+        });
     });
 
     // $(".selectAll").on( "click", function(e) {
@@ -146,4 +173,33 @@ $(function() {
     //         tableUsuarios.rows(  ).deselect(); 
     //     }
     // });
+    $(".dt-checkboxes-select-all > input[type='checkbox']").on( "click", function(e) {
+        selectAll = !selectAll;
+    });
+
+    $("#table-container").on("click", ".remove",function() {
+        remove = true;
+        var data = tableCategories.row( $(this).parents('tr') ).data();
+        $("#_id-edit").val(data["_id"]);
+        $("#nombre-delete-text").text(data["nombre"]);
+        $("#modalDelete").modal();
+    });
+
+    $("#btn-modal-delete").click(function() {
+        let obj = {
+            _id: $("#_id-edit").val()
+        };
+
+        $.post( "/category/deleteCategory", obj, function() {
+            $('#modalDelete').modal('hide');
+
+            showAlert("success", "Se ha eliminado correctamente la categoría");
+
+            tableCategories.ajax.reload();
+        })
+        .fail(function(data) {
+            $('#modalDelete').modal('hide');
+            showAlert("danger", "Ha ocurrido un error eliminando la categoria, por favor intente nuevamente");
+        });
+    });
 });

@@ -185,7 +185,8 @@
                       <th>Nombre</th>
                       <th>Apellido</th>
                       <th>Ciudad</th>
-                      <!-- <th class="disabled-sorting text-right">Actions</th> -->
+                      <th>Categorias</th>
+                      <th>Operaciones</th>
                     </tr>
                   </thead>
                   <tfoot>
@@ -194,7 +195,8 @@
                       <th>Nombre</th>
                       <th>Apellido</th>
                       <th>Ciudad</th>
-                      <!-- <th class="disabled-sorting text-right">Actions</th> -->
+                      <th>Categorias</th>
+                      <th>Operaciones</th>
                     </tr>
                   </tfoot>
                 </table>
@@ -263,6 +265,25 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
             <button id="btn-modal-aceptar" type="button" class="btn btn-info">Aceptar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="modalDelete" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <!-- <h4 class="modal-title">Modal Header</h4>-->
+        </div>
+        <div class="modal-body">
+          <p>Seguro que desea desactivar el usuario <span id="nombre-delete-text" class="text-primary font-weight-bold"></span>?</p>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            <button id="btn-modal-delete" type="button" class="btn btn-danger">Eliminar</button>
           </div>
         </div>
       </div>

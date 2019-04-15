@@ -1,5 +1,9 @@
 const router = require('express').Router();
+const { check, validationResult } = require('express-validator/check');
+
 const User = require('../models/user');
+const Categoria = require('../models/categoria');
+const Ciudade = require('../models/ciudade');
 
 //---------datatable prueba
 router.get('/', async (req, res, next) => {
@@ -27,25 +31,36 @@ router.get('/datatables-data', async (req, res) => {
         $or: [{name: new RegExp(value, "i")}]
         }
     }
-    console.log('query', query);
+    // console.log('query', query);
     let recordsFiltered = await User.count(query);
 
     let users;
     let usersNormalized = [];
     try {
-        users = await User.find( query ).limit(length).skip(start).lean().exec();
+        users = await User.find( query ).limit(length).skip(start).populate('cats', 'nombre').exec();
+        // console.log(users);
         for(let i = 0; i < users.length; i++) {
             let obj = [];
             obj.push(users[i]._id);
-            if(users[i].local) {
-                obj.push(users[i].local.nombre || "");
-                obj.push(users[i].local.apellido || "");
-                obj.push(users[i].local.id_ciudad || "");
+            if(users[i].local.nombre) {
+                obj.push(users[i].local.nombre);
+                obj.push(users[i].local.apellido);
+                // obj.push(users[i].local.id_ciudad);
+            } else {
+                obj.push(users[i].facebook.nombre);
+                obj.push(users[i].facebook.apellido);
+                // obj.push("");
+            }
+            if(users[i].local.id_ciudad) {
+                let ciudad = await Ciudade.findOne({ id: users[i].local.id_ciudad });
+                console.log('ciudad', ciudad);
+                obj.push(ciudad.nombre);
             } else {
                 obj.push("");
-                obj.push("");
-                obj.push("");
             }
+
+            // console.log('id_ciudad', users[i].local.id_ciudad);
+            obj.push(users[i].cats || "");
             usersNormalized.push(obj);
         }
 
@@ -71,7 +86,7 @@ router.get('/datatables-data', async (req, res) => {
         //     }
         //   }
         // ];
-        console.log(usersNormalized);
+        // console.log(usersNormalized);
     } catch(e) {
         console.log('Ha ocurrido un error', e);
         return res.json({error: 'Ha ocurrido un error'});
@@ -87,11 +102,24 @@ router.post('/addCategory', [
     if (!errors.isEmpty()) {
         return res.status(422).json({ errors: errors.array() });
     }
+    // console.log('ids', req.body.ids);
+    // User.find({ '_id': { $in: req.body.ids } }).then(
+    //     (list) => {
+    //         console.log(list);
+    //         return res.json({result: "OK"});
+    //     }
+    // );
 
-    const cat = new Categoria();
-    cat.descripcion = req.body.descripcion;
-    cat.nombre = req.body.nombre;
-    cat.save().then(
+    // let cat = await Categoria.findById(req.body.categoria);
+    // console.log('cat', cat);
+
+    let query = {};
+
+    if(!req.body.selectAll) {
+        query['_id'] = { $in: req.body.ids };
+    }
+
+    User.updateMany(query, { $addToSet:{cats: req.body.categoria} } ).then(
         () => {
             return res.json({result: "OK"});
         }, err => {

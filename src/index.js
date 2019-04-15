@@ -43,13 +43,15 @@ app.use(passport.session());
 
 // middlewares
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // routes
 app.use(indexRoutes);
 app.use('/auth', authRoutes);
-app.use('/user', passport.authenticationMiddleware, userRoutes);
-app.use('/category', passport.authenticationMiddleware, categoryRoutes);
+// app.use('/user', passport.authenticationMiddleware, userRoutes);
+app.use('/user', userRoutes);
+// app.use('/category', passport.authenticationMiddleware, categoryRoutes);
+app.use('/category', categoryRoutes);
 
 // starting the server
 // app.listen(app.get('port'), 'juntosporsantafe.com', () => {
