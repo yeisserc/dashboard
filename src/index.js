@@ -58,7 +58,7 @@ app.use('/category', passport.authenticationMiddleware, categoryRoutes);
 // app.use('/category', categoryRoutes);
 
 // starting the server
-app.listen(app.get('port'), 'juntosporsantafe.com', () => {
-// app.listen(app.get('port'), 'localhost', () => {
+// app.listen(app.get('port'), 'juntosporsantafe.com', () => {
+app.listen(app.get('port'), 'localhost', () => {
   console.log('server on port', app.get('port'));
 });
