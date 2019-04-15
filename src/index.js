@@ -47,7 +47,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // routes
-app.use(indexRoutes);
+// app.use(indexRoutes);
+app.get('/', function(req, res) {
+  return res.redirect('/user');
+});
 app.use('/auth', authRoutes);
 app.use('/user', passport.authenticationMiddleware, userRoutes);
 // app.use('/user', userRoutes);
@@ -56,6 +59,6 @@ app.use('/category', passport.authenticationMiddleware, categoryRoutes);
 
 // starting the server
 app.listen(app.get('port'), 'juntosporsantafe.com', () => {
-// app.listen(app.get('port'), 'juntosporsantafe.com', () => {
+// app.listen(app.get('port'), 'localhost', () => {
   console.log('server on port', app.get('port'));
 });
