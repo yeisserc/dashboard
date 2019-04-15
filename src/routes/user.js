@@ -47,24 +47,29 @@ router.get('/datatables-data', async (req, res) => {
         for(let i = 0; i < users.length; i++) {
             let obj = [];
             obj.push(users[i]._id);
-            if(users[i].local.nombre) {
+            if(users[i].local && users[i].local.nombre) {
                 obj.push(users[i].local.nombre);
                 obj.push(users[i].local.apellido);
                 // obj.push(users[i].local.id_ciudad);
             } else {
-                obj.push(users[i].facebook.nombre);
-                obj.push(users[i].facebook.apellido);
+                if(users[i].facebook && users[i].facebook.nombre) {
+                    obj.push(users[i].facebook.nombre || "");
+                    obj.push(users[i].facebook.apellido || "");
+                } else {
+                    obj.push("");
+                    obj.push("");
+                }
                 // obj.push("");
             }
-            if(users[i].local.id_ciudad) {
+            if(users[i].local && users[i].local.id_ciudad) {
                 let ciudad = await Ciudade.findOne({ id: users[i].local.id_ciudad });
-                obj.push(ciudad.nombre);
+                obj.push(ciudad.nombre || "");
             } else {
                 obj.push("");
             }
             
             obj.push(users[i].cats || "");
-            obj.push(users[i].active);
+            obj.push(users[i].active || true);
             usersNormalized.push(obj);
         }
 
