@@ -1,0 +1,360 @@
+{"id": "1", "nombre": "Aarón Castellanos"}
+{"id": "2", "nombre": "Acebal"}
+{"id": "3", "nombre": "Aguará Grande"}
+{"id": "4", "nombre": "Albarellos"}
+{"id": "5", "nombre": "Alcorta"}
+{"id": "6", "nombre": "Aldao"}
+{"id": "7", "nombre": "Alejandra"}
+{"id": "8", "nombre": "Álvarez"}
+{"id": "9", "nombre": "Ambrosetti"}
+{"id": "10", "nombre": "Amenábar"}
+{"id": "11", "nombre": "Angélica"}
+{"id": "12", "nombre": "Angeloni"}
+{"id": "13", "nombre": "Arequito"}
+{"id": "14", "nombre": "Arminda"}
+{"id": "15", "nombre": "Armstrong"}
+{"id": "16", "nombre": "Arocena"}
+{"id": "17", "nombre": "Arroyo Aguiar"}
+{"id": "18", "nombre": "Arroyo Ceibal"}
+{"id": "19", "nombre": "Arroyo Leyes"}
+{"id": "20", "nombre": "Arroyo Seco"}
+{"id": "21", "nombre": "Arrufó"}
+{"id": "22", "nombre": "Arteaga"}
+{"id": "23", "nombre": "Ataliva"}
+{"id": "24", "nombre": "Aurelia"}
+{"id": "25", "nombre": "Avellaneda"}
+{"id": "26", "nombre": "Barrancas"}
+{"id": "27", "nombre": "Bauer Y Sigel"}
+{"id": "28", "nombre": "Bella Italia"}
+{"id": "29", "nombre": "Berabevú"}
+{"id": "30", "nombre": "Berna"}
+{"id": "31", "nombre": "Bernardo de Irigo"}
+{"id": "32", "nombre": "Bigand"}
+{"id": "33", "nombre": "Bombal"}
+{"id": "34", "nombre": "Bouquet"}
+{"id": "35", "nombre": "Bustinza"}
+{"id": "36", "nombre": "Cabal"}
+{"id": "37", "nombre": "Cacique Ariacaiquin"}
+{"id": "38", "nombre": "Cafferata"}
+{"id": "39", "nombre": "Calchaquí"}
+{"id": "40", "nombre": "Campo Andino"}
+{"id": "41", "nombre": "Campo Piaggio"}
+{"id": "42", "nombre": "Cañada de Gómez"}
+{"id": "43", "nombre": "Cañada del Ucle"}
+{"id": "44", "nombre": "Cañada Rica"}
+{"id": "45", "nombre": "Cañada Rosquín"}
+{"id": "46", "nombre": "Candioti"}
+{"id": "48", "nombre": "Capitán Bermúdez"}
+{"id": "49", "nombre": "Capivara"}
+{"id": "50", "nombre": "Carcarañá"}
+{"id": "51", "nombre": "Carlos Pellegrini"}
+{"id": "52", "nombre": "Carmen"}
+{"id": "53", "nombre": "Carmen Del Sauce"}
+{"id": "54", "nombre": "Carreras"}
+{"id": "55", "nombre": "Carrizales"}
+{"id": "56", "nombre": "Casalegno"}
+{"id": "57", "nombre": "Casas"}
+{"id": "58", "nombre": "Casilda"}
+{"id": "59", "nombre": "Castelar"}
+{"id": "60", "nombre": "Castellanos"}
+{"id": "61", "nombre": "Cayastá"}
+{"id": "62", "nombre": "Cayastacito"}
+{"id": "63", "nombre": "Centeno"}
+{"id": "64", "nombre": "Cepeda"}
+{"id": "65", "nombre": "Ceres"}
+{"id": "66", "nombre": "Chabás"}
+{"id": "67", "nombre": "Chañar Ladeado"}
+{"id": "68", "nombre": "Chapuy"}
+{"id": "69", "nombre": "Chovet"}
+{"id": "70", "nombre": "Christophersen"}
+{"id": "71", "nombre": "Classon"}
+{"id": "72", "nombre": "Cnel. Arnold"}
+{"id": "73", "nombre": "Cnel. Bogado"}
+{"id": "74", "nombre": "Cnel. Dominguez"}
+{"id": "75", "nombre": "Cnel. Fraga"}
+{"id": "76", "nombre": "Col. Aldao"}
+{"id": "77", "nombre": "Col. Ana"}
+{"id": "78", "nombre": "Col. Belgrano"}
+{"id": "79", "nombre": "Col. Bicha"}
+{"id": "80", "nombre": "Col. Bigand"}
+{"id": "81", "nombre": "Col. Bossi"}
+{"id": "82", "nombre": "Col. Cavour"}
+{"id": "83", "nombre": "Col. Cello"}
+{"id": "84", "nombre": "Col. Dolores"}
+{"id": "85", "nombre": "Col. Dos Rosas"}
+{"id": "86", "nombre": "Col. Durán"}
+{"id": "87", "nombre": "Col. Iturraspe"}
+{"id": "88", "nombre": "Col. Margarita"}
+{"id": "89", "nombre": "Col. Mascias"}
+{"id": "90", "nombre": "Col. Raquel"}
+{"id": "91", "nombre": "Col. Rosa"}
+{"id": "92", "nombre": "Col. San José"}
+{"id": "93", "nombre": "Constanza"}
+{"id": "94", "nombre": "Coronda"}
+{"id": "95", "nombre": "Correa"}
+{"id": "96", "nombre": "Crispi"}
+{"id": "97", "nombre": "Cululú"}
+{"id": "98", "nombre": "Curupayti"}
+{"id": "99", "nombre": "Desvio Arijón"}
+{"id": "100", "nombre": "Diaz"}
+{"id": "101", "nombre": "Diego de Alvear"}
+{"id": "102", "nombre": "Egusquiza"}
+{"id": "103", "nombre": "El Arazá"}
+{"id": "104", "nombre": "El Rabón"}
+{"id": "105", "nombre": "El Sombrerito"}
+{"id": "106", "nombre": "El Trébol"}
+{"id": "107", "nombre": "Elisa"}
+{"id": "108", "nombre": "Elortondo"}
+{"id": "109", "nombre": "Emilia"}
+{"id": "110", "nombre": "Empalme San Carlos"}
+{"id": "111", "nombre": "Empalme Villa Constitucion"}
+{"id": "112", "nombre": "Esmeralda"}
+{"id": "113", "nombre": "Esperanza"}
+{"id": "114", "nombre": "Estación Alvear"}
+{"id": "115", "nombre": "Estacion Clucellas"}
+{"id": "116", "nombre": "Esteban Rams"}
+{"id": "117", "nombre": "Esther"}
+{"id": "118", "nombre": "Esustolia"}
+{"id": "119", "nombre": "Eusebia"}
+{"id": "120", "nombre": "Felicia"}
+{"id": "121", "nombre": "Fidela"}
+{"id": "122", "nombre": "Fighiera"}
+{"id": "123", "nombre": "Firmat"}
+{"id": "124", "nombre": "Florencia"}
+{"id": "125", "nombre": "Fortín Olmos"}
+{"id": "126", "nombre": "Franck"}
+{"id": "127", "nombre": "Fray Luis Beltrán"}
+{"id": "128", "nombre": "Frontera"}
+{"id": "129", "nombre": "Fuentes"}
+{"id": "130", "nombre": "Funes"}
+{"id": "131", "nombre": "Gaboto"}
+{"id": "132", "nombre": "Galisteo"}
+{"id": "133", "nombre": "Gálvez"}
+{"id": "134", "nombre": "Garabalto"}
+{"id": "135", "nombre": "Garibaldi"}
+{"id": "136", "nombre": "Gato Colorado"}
+{"id": "137", "nombre": "Gdor. Crespo"}
+{"id": "138", "nombre": "Gessler"}
+{"id": "139", "nombre": "Godoy"}
+{"id": "140", "nombre": "Golondrina"}
+{"id": "141", "nombre": "Gral. Gelly"}
+{"id": "142", "nombre": "Gral. Lagos"}
+{"id": "143", "nombre": "Granadero Baigorria"}
+{"id": "144", "nombre": "Gregoria Perez De Denis"}
+{"id": "145", "nombre": "Grutly"}
+{"id": "146", "nombre": "Guadalupe N."}
+{"id": "147", "nombre": "Gödeken"}
+{"id": "148", "nombre": "Helvecia"}
+{"id": "149", "nombre": "Hersilia"}
+{"id": "150", "nombre": "Hipatía"}
+{"id": "151", "nombre": "Huanqueros"}
+{"id": "152", "nombre": "Hugentobler"}
+{"id": "153", "nombre": "Hughes"}
+{"id": "154", "nombre": "Humberto 1º"}
+{"id": "155", "nombre": "Humboldt"}
+{"id": "156", "nombre": "Ibarlucea"}
+{"id": "157", "nombre": "Ing. Chanourdie"}
+{"id": "158", "nombre": "Intiyaco"}
+{"id": "159", "nombre": "Ituzaingó"}
+{"id": "160", "nombre": "Jacinto L. Aráuz"}
+{"id": "161", "nombre": "Josefina"}
+{"id": "162", "nombre": "Juan B. Molina"}
+{"id": "163", "nombre": "Juan de Garay"}
+{"id": "164", "nombre": "Juncal"}
+{"id": "165", "nombre": "La Brava"}
+{"id": "166", "nombre": "La Cabral"}
+{"id": "167", "nombre": "La Camila"}
+{"id": "168", "nombre": "La Chispa"}
+{"id": "169", "nombre": "La Clara"}
+{"id": "170", "nombre": "La Criolla"}
+{"id": "171", "nombre": "La Gallareta"}
+{"id": "172", "nombre": "La Lucila"}
+{"id": "173", "nombre": "La Pelada"}
+{"id": "174", "nombre": "La Penca"}
+{"id": "175", "nombre": "La Rubia"}
+{"id": "176", "nombre": "La Sarita"}
+{"id": "177", "nombre": "La Vanguardia"}
+{"id": "178", "nombre": "Labordeboy"}
+{"id": "179", "nombre": "Laguna Paiva"}
+{"id": "180", "nombre": "Landeta"}
+{"id": "181", "nombre": "Lanteri"}
+{"id": "182", "nombre": "Larrechea"}
+{"id": "183", "nombre": "Las Avispas"}
+{"id": "184", "nombre": "Las Bandurrias"}
+{"id": "185", "nombre": "Las Garzas"}
+{"id": "186", "nombre": "Las Palmeras"}
+{"id": "187", "nombre": "Las Parejas"}
+{"id": "188", "nombre": "Las Petacas"}
+{"id": "189", "nombre": "Las Rosas"}
+{"id": "190", "nombre": "Las Toscas"}
+{"id": "191", "nombre": "Las Tunas"}
+{"id": "192", "nombre": "Lazzarino"}
+{"id": "193", "nombre": "Lehmann"}
+{"id": "194", "nombre": "Llambi Campbell"}
+{"id": "195", "nombre": "Logroño"}
+{"id": "196", "nombre": "Loma Alta"}
+{"id": "197", "nombre": "López"}
+{"id": "198", "nombre": "Los Amores"}
+{"id": "199", "nombre": "Los Cardos"}
+{"id": "200", "nombre": "Los Laureles"}
+{"id": "201", "nombre": "Los Molinos"}
+{"id": "202", "nombre": "Los Quirquinchos"}
+{"id": "203", "nombre": "Lucio V. Lopez"}
+{"id": "204", "nombre": "Luis Palacios"}
+{"id": "205", "nombre": "Ma. Juana"}
+{"id": "206", "nombre": "Ma. Luisa"}
+{"id": "207", "nombre": "Ma. Susana"}
+{"id": "208", "nombre": "Ma. Teresa"}
+{"id": "209", "nombre": "Maciel"}
+{"id": "210", "nombre": "Maggiolo"}
+{"id": "211", "nombre": "Malabrigo"}
+{"id": "212", "nombre": "Marcelino Escalada"}
+{"id": "213", "nombre": "Margarita"}
+{"id": "214", "nombre": "Matilde"}
+{"id": "215", "nombre": "Mauá"}
+{"id": "216", "nombre": "Máximo Paz"}
+{"id": "217", "nombre": "Melincué"}
+{"id": "218", "nombre": "Miguel Torres"}
+{"id": "219", "nombre": "Moisés Ville"}
+{"id": "220", "nombre": "Monigotes"}
+{"id": "221", "nombre": "Monje"}
+{"id": "222", "nombre": "Monte Obscuridad"}
+{"id": "223", "nombre": "Monte Vera"}
+{"id": "224", "nombre": "Montefiore"}
+{"id": "225", "nombre": "Montes de Oca"}
+{"id": "226", "nombre": "Murphy"}
+{"id": "227", "nombre": "Ñanducita"}
+{"id": "228", "nombre": "Naré"}
+{"id": "229", "nombre": "Nelson"}
+{"id": "230", "nombre": "Nicanor E. Molinas"}
+{"id": "231", "nombre": "Nuevo Torino"}
+{"id": "232", "nombre": "Oliveros"}
+{"id": "233", "nombre": "Palacios"}
+{"id": "234", "nombre": "Pavón"}
+{"id": "235", "nombre": "Pavón Arriba"}
+{"id": "236", "nombre": "Pedro Gómez Cello"}
+{"id": "237", "nombre": "Pérez"}
+{"id": "238", "nombre": "Peyrano"}
+{"id": "239", "nombre": "Piamonte"}
+{"id": "240", "nombre": "Pilar"}
+{"id": "241", "nombre": "Piñero"}
+{"id": "242", "nombre": "Plaza Clucellas"}
+{"id": "243", "nombre": "Portugalete"}
+{"id": "244", "nombre": "Pozo Borrado"}
+{"id": "245", "nombre": "Progreso"}
+{"id": "246", "nombre": "Providencia"}
+{"id": "247", "nombre": "Pte. Roca"}
+{"id": "248", "nombre": "Pueblo Andino"}
+{"id": "249", "nombre": "Pueblo Esther"}
+{"id": "250", "nombre": "Pueblo Gral. San Martín"}
+{"id": "251", "nombre": "Pueblo Irigoyen"}
+{"id": "252", "nombre": "Pueblo Marini"}
+{"id": "253", "nombre": "Pueblo Muñoz"}
+{"id": "254", "nombre": "Pueblo Uranga"}
+{"id": "255", "nombre": "Pujato"}
+{"id": "256", "nombre": "Pujato N."}
+{"id": "257", "nombre": "Rafael"}
+{"id": "258", "nombre": "Ramayón"}
+{"id": "259", "nombre": "Ramona"}
+{"id": "260", "nombre": "Reconquista"}
+{"id": "261", "nombre": "Recreo"}
+{"id": "262", "nombre": "Ricardone"}
+{"id": "263", "nombre": "Rivadavia"}
+{"id": "264", "nombre": "Roldán"}
+{"id": "265", "nombre": "Romang"}
+{"id": "266", "nombre": "Rosario"}
+{"id": "267", "nombre": "Rueda"}
+{"id": "268", "nombre": "Rufino"}
+{"id": "269", "nombre": "Sa Pereira"}
+{"id": "270", "nombre": "Saguier"}
+{"id": "271", "nombre": "Saladero M. Cabal"}
+{"id": "272", "nombre": "Salto Grande"}
+{"id": "273", "nombre": "San Agustín"}
+{"id": "274", "nombre": "San Antonio de Obligado"}
+{"id": "275", "nombre": "San Bernardo (N.J.)"}
+{"id": "276", "nombre": "San Bernardo (S.J.)"}
+{"id": "277", "nombre": "San Carlos Centro"}
+{"id": "278", "nombre": "San Carlos N."}
+{"id": "279", "nombre": "San Carlos S."}
+{"id": "280", "nombre": "San Cristóbal"}
+{"id": "281", "nombre": "San Eduardo"}
+{"id": "282", "nombre": "San Eugenio"}
+{"id": "283", "nombre": "San Fabián"}
+{"id": "284", "nombre": "San Fco. de Santa Fé"}
+{"id": "285", "nombre": "San Genaro"}
+{"id": "286", "nombre": "San Genaro N."}
+{"id": "287", "nombre": "San Gregorio"}
+{"id": "288", "nombre": "San Guillermo"}
+{"id": "289", "nombre": "San Javier"}
+{"id": "290", "nombre": "San Jerónimo del Sauce"}
+{"id": "291", "nombre": "San Jerónimo N."}
+{"id": "292", "nombre": "San Jerónimo S."}
+{"id": "293", "nombre": "San Jorge"}
+{"id": "294", "nombre": "San José de La Esquina"}
+{"id": "295", "nombre": "San José del Rincón"}
+{"id": "296", "nombre": "San Justo"}
+{"id": "297", "nombre": "San Lorenzo"}
+{"id": "298", "nombre": "San Mariano"}
+{"id": "299", "nombre": "San Martín de Las Escobas"}
+{"id": "300", "nombre": "San Martín N."}
+{"id": "301", "nombre": "San Vicente"}
+{"id": "302", "nombre": "Sancti Spititu"}
+{"id": "303", "nombre": "Sanford"}
+{"id": "47", "nombre": "Santa Fe (ciudad)"}
+{"id": "304", "nombre": "Santo Domingo"}
+{"id": "305", "nombre": "Santo Tomé"}
+{"id": "306", "nombre": "Santurce"}
+{"id": "307", "nombre": "Sargento Cabral"}
+{"id": "308", "nombre": "Sarmiento"}
+{"id": "309", "nombre": "Sastre"}
+{"id": "310", "nombre": "Sauce Viejo"}
+{"id": "311", "nombre": "Serodino"}
+{"id": "312", "nombre": "Silva"}
+{"id": "313", "nombre": "Soldini"}
+{"id": "314", "nombre": "Soledad"}
+{"id": "315", "nombre": "Soutomayor"}
+{"id": "316", "nombre": "Sta. Clara de Buena Vista"}
+{"id": "317", "nombre": "Sta. Clara de Saguier"}
+{"id": "318", "nombre": "Sta. Isabel"}
+{"id": "319", "nombre": "Sta. Margarita"}
+{"id": "320", "nombre": "Sta. Maria Centro"}
+{"id": "321", "nombre": "Sta. María N."}
+{"id": "322", "nombre": "Sta. Rosa"}
+{"id": "323", "nombre": "Sta. Teresa"}
+{"id": "324", "nombre": "Suardi"}
+{"id": "325", "nombre": "Sunchales"}
+{"id": "326", "nombre": "Susana"}
+{"id": "327", "nombre": "Tacuarendí"}
+{"id": "328", "nombre": "Tacural"}
+{"id": "329", "nombre": "Tartagal"}
+{"id": "330", "nombre": "Teodelina"}
+{"id": "331", "nombre": "Theobald"}
+{"id": "332", "nombre": "Timbúes"}
+{"id": "333", "nombre": "Toba"}
+{"id": "334", "nombre": "Tortugas"}
+{"id": "335", "nombre": "Tostado"}
+{"id": "336", "nombre": "Totoras"}
+{"id": "337", "nombre": "Traill"}
+{"id": "338", "nombre": "Venado Tuerto"}
+{"id": "339", "nombre": "Vera"}
+{"id": "340", "nombre": "Vera y Pintado"}
+{"id": "341", "nombre": "Videla"}
+{"id": "342", "nombre": "Vila"}
+{"id": "343", "nombre": "Villa Amelia"}
+{"id": "344", "nombre": "Villa Ana"}
+{"id": "345", "nombre": "Villa Cañas"}
+{"id": "346", "nombre": "Villa Constitución"}
+{"id": "347", "nombre": "Villa Eloísa"}
+{"id": "348", "nombre": "Villa Gdor. Gálvez"}
+{"id": "349", "nombre": "Villa Guillermina"}
+{"id": "350", "nombre": "Villa Minetti"}
+{"id": "351", "nombre": "Villa Mugueta"}
+{"id": "352", "nombre": "Villa Ocampo"}
+{"id": "353", "nombre": "Villa San José"}
+{"id": "354", "nombre": "Villa Saralegui"}
+{"id": "355", "nombre": "Villa Trinidad"}
+{"id": "356", "nombre": "Villada"}
+{"id": "357", "nombre": "Virginia"}
+{"id": "358", "nombre": "Wheelwright"}
+{"id": "359", "nombre": "Zavalla"}
+{"id": "360", "nombre": "Zenón Pereira"}
