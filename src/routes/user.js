@@ -137,6 +137,12 @@ router.post('/addCategory', [
     );
 });
 
+
+router.get('/cargar-categorias', async function(req, res) {
+    const cats = await Categoria.find();
+    return res.json(cats);
+});
+
 router.post('/desactivateUser',  [
     check('_id')
         .not().isEmpty().withMessage('Por favor complete este campo')

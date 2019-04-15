@@ -109,8 +109,8 @@ $(function() {
                     action: function(e, dt, node, config) {
                         //trigger the bootstrap modal
                         $.ajax({
-                            url: '/cargar-categorias',
-                            type: "POST",
+                            url: '/user/cargar-categorias',
+                            type: "GET",
                             success : function(res) {
                                 let options = $("#categoria");
                                 options.empty();
