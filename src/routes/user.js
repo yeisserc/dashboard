@@ -31,8 +31,24 @@ router.get('/datatables-data', async (req, res) => {
     let recordsFiltered = await User.count(query);
 
     let users;
+    let usersNormalized = [];
     try {
         users = await User.find( query ).limit(length).skip(start).lean().exec();
+        for(let i = 0; i < users.length; i++) {
+            let obj = [];
+            obj.push(users[i]._id);
+            if(users[i].local) {
+                obj.push(users[i].local.nombre || "");
+                obj.push(users[i].local.apellido || "");
+                obj.push(users[i].local.id_ciudad || "");
+            } else {
+                obj.push("");
+                obj.push("");
+                obj.push("");
+            }
+            usersNormalized.push(obj);
+        }
+
         // editedUsers = users.map(function(value, index, array) {
         //   console.log(array[index]);
         //   if(!array[index].local.nombre) {
@@ -55,12 +71,33 @@ router.get('/datatables-data', async (req, res) => {
         //     }
         //   }
         // ];
-        console.log(users);
+        console.log(usersNormalized);
     } catch(e) {
         console.log('Ha ocurrido un error', e);
         return res.json({error: 'Ha ocurrido un error'});
     }
-    return res.json({data: users, recordsTotal, recordsFiltered});
+    return res.json({data: usersNormalized, recordsTotal, recordsFiltered});
+});
+
+router.post('/addCategory', [
+    check('categoria')
+      .not().isEmpty().withMessage('Por favor complete este campo')
+], async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(422).json({ errors: errors.array() });
+    }
+
+    const cat = new Categoria();
+    cat.descripcion = req.body.descripcion;
+    cat.nombre = req.body.nombre;
+    cat.save().then(
+        () => {
+            return res.json({result: "OK"});
+        }, err => {
+            return res.status(500).json({result: "FAIL"});
+        }
+    );
 });
 
 module.exports = router;
