@@ -67,6 +67,12 @@ router.get('/datatables-data', async (req, res) => {
             } else {
                 obj.push("");
             }
+            console.log('twitter', users[i].twitter)
+            if(users[i].twitter && users[i].twitter.token) {
+                obj.push(true);
+            } else {
+                obj.push(false);
+            }
             
             obj.push(users[i].cats || "");
             obj.push(users[i].active || true);

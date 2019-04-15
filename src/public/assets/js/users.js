@@ -60,6 +60,15 @@ $(function() {
                 'targets': 4,
                 "defaultContent": "No asignado",
                 "render": function ( data, type, row ) {
+                    // return data ? "Si" : "No";
+                    if(data) return '<i class="fas fa-check text-success"></i>';
+                    return '<i class="fas fa-not-equal"></i>';
+                },
+            },
+            {
+                'targets': 5,
+                "defaultContent": "No asignado",
+                "render": function ( data, type, row ) {
                     let catsNombres = [];
                     for(let i = 0; i < data.length; i++) {
                         catsNombres.push(data[i].nombre);
@@ -74,7 +83,7 @@ $(function() {
                 "render": function ( data, type, row ) {
                     return data ? "Activo" : "Inactivo";
                 },
-                "targets": 5
+                "targets": 6
             },
             {
                 // The `data` parameter refers to the data for the cell (defined by the
@@ -83,7 +92,7 @@ $(function() {
                 "render": function ( data, type, row ) {
                     return '<a href="#" class="btn btn-round btn-danger btn-icon btn-sm desactivate"><i class="fas fa-times"></i></a>';
                 },
-                "targets": 6
+                "targets": 7
             }
          ],
          'select': {
@@ -192,7 +201,7 @@ $(function() {
         var data = tableUsuarios.row( $(this).parents('tr') ).data();
         // console.log(data[0]);
         $("#_id-edit").val(data[0]);
-        $("#nombre-delete-text").text(data[1] + data[2]);
+        $("#nombre-delete-text").text(data[1] + " " + data[2]);
         $("#modalDelete").modal();
     });
 
