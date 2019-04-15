@@ -4,6 +4,7 @@ const ejs = require('ejs');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+// const morgan = require('morgan');
 // const MongoStore = require('connect-mongo')(session);
 require('./models/admin');
 
@@ -48,13 +49,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // routes
 app.use(indexRoutes);
 app.use('/auth', authRoutes);
-// app.use('/user', passport.authenticationMiddleware, userRoutes);
-app.use('/user', userRoutes);
-// app.use('/category', passport.authenticationMiddleware, categoryRoutes);
-app.use('/category', categoryRoutes);
+app.use('/user', passport.authenticationMiddleware, userRoutes);
+// app.use('/user', userRoutes);
+app.use('/category', passport.authenticationMiddleware, categoryRoutes);
+// app.use('/category', categoryRoutes);
 
 // starting the server
-// app.listen(app.get('port'), 'juntosporsantafe.com', () => {
 app.listen(app.get('port'), 'juntosporsantafe.com', () => {
+// app.listen(app.get('port'), 'juntosporsantafe.com', () => {
   console.log('server on port', app.get('port'));
 });
