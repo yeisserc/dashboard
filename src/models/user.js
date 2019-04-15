@@ -32,6 +32,10 @@ var UserSchema = new Schema({
 	},
 	cats : [{ type:Schema.ObjectId, ref:'Categoria' }],
 	CheckWhatsapp : Boolean,
+	active: {
+		type: Boolean,
+		default: true
+	},
 	createdAt	  : {type: Date, default: Date.now} // Fecha de creación
 });
 

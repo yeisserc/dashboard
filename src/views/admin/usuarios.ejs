@@ -173,7 +173,7 @@
               <div class="card-header">
                 <h4 class="card-title">Usuarios</h4>
               </div>
-              <div class="card-body">
+              <div id="table-container" class="card-body">
                 <div class="toolbar">
                   <!--        Here you can write extra buttons/actions for the toolbar              -->
                 </div>
@@ -186,6 +186,7 @@
                       <th>Apellido</th>
                       <th>Ciudad</th>
                       <th>Categorias</th>
+                      <th>Estatus</th>
                       <th>Operaciones</th>
                     </tr>
                   </thead>
@@ -196,6 +197,7 @@
                       <th>Apellido</th>
                       <th>Ciudad</th>
                       <th>Categorias</th>
+                      <th>Estatus</th>
                       <th>Operaciones</th>
                     </tr>
                   </tfoot>
@@ -208,8 +210,14 @@
           <!-- end col-md-12 -->
         </div>
         <!-- end row -->
+        <div id="alert" style="display:none; width:50%; right:10px; z-index: 1; position: fixed; margin-top: 10px; bottom: 10px;" class="alert alert-info" role="alert">
+          <!--<strong>Holy guacamole!</strong>--> <span id="alert-text">hola</span>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
       </div>
-      <footer class="footer">
+      <!-- <footer class="footer">
         <div class=" container-fluid ">
           <nav>
             <ul>
@@ -239,7 +247,7 @@
             <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
           </div>
         </div>
-      </footer>
+      </footer> -->
     </div>
   </div>
   <!-- Modal -->
@@ -283,7 +291,7 @@
           <p>Seguro que desea desactivar el usuario <span id="nombre-delete-text" class="text-primary font-weight-bold"></span>?</p>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-            <button id="btn-modal-delete" type="button" class="btn btn-danger">Eliminar</button>
+            <button id="btn-modal-delete" type="button" class="btn btn-warning">Eliminar</button>
           </div>
         </div>
       </div>

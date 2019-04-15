@@ -30,7 +30,7 @@ $(function() {
         "pageLength": 20,
         "processing": true,
         "serverSide": true,
-        "searching": false,
+        "searching": true,
         "lengthChange": false,
         "ordering": false,
         "language": {
@@ -76,7 +76,8 @@ $(function() {
         })
     });
 
-    $("#table-container").on("click", ".remove",function() {
+    $("#table-container").on("click", ".remove", function(e) {
+        e.preventDefault();
         remove = true;
         var data = tableCategories.row( $(this).parents('tr') ).data();
         $("#_id-edit").val(data["_id"]);

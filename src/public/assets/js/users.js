@@ -72,9 +72,18 @@ $(function() {
                 // `data` option, which defaults to the column being worked with, in
                 // this case `data: 0`.
                 "render": function ( data, type, row ) {
-                    return '<a href="#" class="btn btn-round btn-danger btn-icon btn-sm desactivate"><i class="fas fa-times"></i></a>';
+                    return data ? "Activo" : "Inactivo";
                 },
                 "targets": 5
+            },
+            {
+                // The `data` parameter refers to the data for the cell (defined by the
+                // `data` option, which defaults to the column being worked with, in
+                // this case `data: 0`.
+                "render": function ( data, type, row ) {
+                    return '<a href="#" class="btn btn-round btn-danger btn-icon btn-sm desactivate"><i class="fas fa-times"></i></a>';
+                },
+                "targets": 6
             }
          ],
          'select': {
@@ -83,7 +92,7 @@ $(function() {
         "pageLength": 20,
         "processing": true,
         "serverSide": true,
-        "searching": false,
+        "searching": true,
         "lengthChange": false,
         "ordering": false,
         "language": {
@@ -92,7 +101,7 @@ $(function() {
         select: {
             style: 'multi'
         },
-        dom: "lBtipr",
+        dom: "Bftipr",
         buttons: {
             buttons: [
                 {
@@ -177,11 +186,13 @@ $(function() {
         selectAll = !selectAll;
     });
 
-    $("#table-container").on("click", ".remove",function() {
-        remove = true;
-        var data = tableCategories.row( $(this).parents('tr') ).data();
-        $("#_id-edit").val(data["_id"]);
-        $("#nombre-delete-text").text(data["nombre"]);
+    $("#table-container").on("click", ".desactivate",function(e) {
+        // remove = true;
+        e.preventDefault();
+        var data = tableUsuarios.row( $(this).parents('tr') ).data();
+        // console.log(data[0]);
+        $("#_id-edit").val(data[0]);
+        $("#nombre-delete-text").text(data[1] + data[2]);
         $("#modalDelete").modal();
     });
 
@@ -190,16 +201,16 @@ $(function() {
             _id: $("#_id-edit").val()
         };
 
-        $.post( "/category/deleteCategory", obj, function() {
+        $.post( "/user/desactivateUser", obj, function() {
             $('#modalDelete').modal('hide');
 
-            showAlert("success", "Se ha eliminado correctamente la categoría");
+            showAlert("success", "Se ha desactivado correctamente el usuario");
 
-            tableCategories.ajax.reload();
+            tableUsuarios.ajax.reload();
         })
         .fail(function(data) {
             $('#modalDelete').modal('hide');
-            showAlert("danger", "Ha ocurrido un error eliminando la categoria, por favor intente nuevamente");
+            showAlert("danger", "Ha ocurrido un error desactivando el usuario, por favor intente nuevamente");
         });
     });
 });

@@ -24,7 +24,7 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
     <div class="container-fluid">
-      <div class="navbar-wrapper">
+      <!-- <div class="navbar-wrapper">
         <a class="navbar-brand" href="#pablo">Login Page</a>
       </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,7 +60,7 @@
             </a>
           </li>
         </ul>
-      </div>
+      </div> -->
     </div>
   </nav>
   <!-- End Navbar -->
@@ -78,6 +78,11 @@
                   </div>
                 </div>
                 <div class="card-body ">
+                  <% if (locals.error) { %>
+                    <div class="alert alert-primary" role="alert">
+                        <%= locals.error %>
+                    </div>
+                  <% } %>
                   <div class="input-group no-border form-control-lg">
                     <span class="input-group-prepend">
                       <div class="input-group-text">
@@ -96,9 +101,8 @@
                   </div>
                 </div>
                 <div class="card-footer ">
-                  <!-- <a href="#pablo" class="btn btn-primary btn-round btn-lg btn-block mb-3">Get Started</a> -->
                   <button type="submit" class="btn btn-primary btn-round">Entrar</button>
-                  <div class="pull-left">
+                  <!-- <div class="pull-left">
                     <h6>
                       <a href="#pablo" class="link footer-link">Create Account</a>
                     </h6>
@@ -107,7 +111,7 @@
                     <h6>
                       <a href="#pablo" class="link footer-link">Need Help?</a>
                     </h6>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </form>

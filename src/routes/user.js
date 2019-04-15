@@ -28,7 +28,12 @@ router.get('/datatables-data', async (req, res) => {
         // }
         let value = req.query.search.value;
         query = {
-        $or: [{name: new RegExp(value, "i")}]
+            $or: [
+                {'local.nombre': new RegExp(value, "i")},
+                {'facebook.nombre': new RegExp(value, "i")},
+                {'local.apellido': new RegExp(value, "i")},
+                {'facebook.apellido': new RegExp(value, "i")}
+            ]
         }
     }
     // console.log('query', query);
@@ -53,14 +58,13 @@ router.get('/datatables-data', async (req, res) => {
             }
             if(users[i].local.id_ciudad) {
                 let ciudad = await Ciudade.findOne({ id: users[i].local.id_ciudad });
-                console.log('ciudad', ciudad);
                 obj.push(ciudad.nombre);
             } else {
                 obj.push("");
             }
-
-            // console.log('id_ciudad', users[i].local.id_ciudad);
+            
             obj.push(users[i].cats || "");
+            obj.push(users[i].active);
             usersNormalized.push(obj);
         }
 
@@ -120,6 +124,27 @@ router.post('/addCategory', [
     }
 
     User.updateMany(query, { $addToSet:{cats: req.body.categoria} } ).then(
+        () => {
+            return res.json({result: "OK"});
+        }, err => {
+            return res.status(500).json({result: "FAIL"});
+        }
+    );
+});
+
+router.post('/desactivateUser',  [
+    check('_id')
+        .not().isEmpty().withMessage('Por favor complete este campo')
+], async (req, res) => {
+    // Finds the validation errors in this request and wraps them in an object with handy functions
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(422).json({ errors: errors.array() });
+    }
+
+    let user = await User.findById(req.body._id);
+    user.active = false;
+    user.save().then(
         () => {
             return res.json({result: "OK"});
         }, err => {
