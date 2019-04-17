@@ -170,4 +170,18 @@ router.post('/desactivateUser',  [
     );
 });
 
+router.post('/getUser',  [
+    check('_id')
+        .not().isEmpty().withMessage('Por favor complete este campo')
+], async (req, res) => {
+    // Finds the validation errors in this request and wraps them in an object with handy functions
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(422).json({ errors: errors.array() });
+    }
+
+    let user = await User.findById(req.body._id);
+    return res.json(user);
+});
+
 module.exports = router;

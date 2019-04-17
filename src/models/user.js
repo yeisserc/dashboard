@@ -9,14 +9,14 @@ var Schema = mongoose.Schema;
 // Campos que vamos a guardar en la base de datos
 var UserSchema = new Schema({
 	local : {
-	dni					: String,
-	nombre			: String, // Nombre del usuario
-	apellido 		: String,
-	sexo 				: String,
-	email 			: String,
-	id_ciudad 	: String,
-	celular 		: String,
-	fijo 				: String
+		dni					: String,
+		nombre			: String, // Nombre del usuario
+		apellido 		: String,
+		sexo 				: String,
+		email 			: String,
+		id_ciudad 	: String,
+		celular 		: String,
+		fijo 				: String
 	},
 	facebook: {
 		id			 : String,

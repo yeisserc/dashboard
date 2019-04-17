@@ -23,6 +23,38 @@
     .modal-header .close {
       padding: 0;
     }
+    #table-container td:not(.dt-checkboxes-cell):not(.operations) {
+      cursor: pointer;
+    }
+    /* .popbox {
+      display: none;
+      position: absolute;
+      z-index: 99999;
+      width: 400px;
+      padding: 10px;
+      background: #EEEFEB;
+      color: #000000;
+      border: 1px solid #4D4F53;
+      margin: 0px;
+      -webkit-box-shadow: 0px 0px 5px 0px rgba(164, 164, 164, 1);
+      box-shadow: 0px 0px 5px 0px rgba(164, 164, 164, 1);
+    }
+    .popbox h2 {
+        background-color: #4D4F53;
+        color: #E3E5DD;
+        font-size: 14px;
+        display: block;
+        width: 100%;
+        margin: -10px 0px 8px -10px;
+        padding: 5px 10px;
+    } */
+    i.visible {
+      display: contents;
+      font-size: 1.4rem;
+    }
+    i.hide {
+      display: none;
+    }
   </style>
 </head>
 
@@ -218,6 +250,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
+        <!-- This is a popbox test. <a href="#" class="popper" data-popbox="pop1">Hover here</a> to see how it works. -->
       </div>
       <!-- <footer class="footer">
         <div class=" container-fluid ">
@@ -299,6 +332,49 @@
       </div>
     </div>
   </div>
+  <div class="modal fade" id="modalDetail" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <!-- <h4 class="modal-title">Modal Header</h4>-->
+        </div>
+        <div class="modal-body">
+          <div id="detailInfo"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div id="pop1" class="popbox">
+      <h2>Job Info Search</h2>
+ 
+      <h2>WRKNo : <input type="text"  /></h2>
+ 
+      <h2>Result</h2>
+ 
+      <p>Customer Name :
+          <input type="text" />
+      </p>
+      <p>Caller Number :
+          <input type="text" />
+      </p>
+      <p>Complosed :
+          <input type="text" />
+      </p>
+      <p>Cate :
+          <input type="text" />
+      </p>
+      <p>Det :
+          <input type="text" />
+      </p>
+      <p>Feedback :
+          <input type="text" />
+      </p>
+      <p>WRKNo :
+          <input type="text" />
+      </p>
+  </div> -->
   <!--   Core JS Files   -->
   <script src="/assets/js/core/jquery.min.js"></script>
   <script src="/assets/js/core/popper.min.js"></script>

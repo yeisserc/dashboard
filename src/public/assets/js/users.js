@@ -53,7 +53,7 @@ $(function() {
             {
                'targets': 0,
                'checkboxes': {
-                  'selectRow': true
+                  'selectRow': false
                }
             },
             {
@@ -89,6 +89,7 @@ $(function() {
                 // The `data` parameter refers to the data for the cell (defined by the
                 // `data` option, which defaults to the column being worked with, in
                 // this case `data: 0`.
+                className: "operations",
                 "render": function ( data, type, row ) {
                     return '<a href="#" class="btn btn-round btn-danger btn-icon btn-sm desactivate"><i class="fas fa-times"></i></a>';
                 },
@@ -222,4 +223,168 @@ $(function() {
             showAlert("danger", "Ha ocurrido un error desactivando el usuario, por favor intente nuevamente");
         });
     });
+
+    $("#table-container").on("click", "td:not(.dt-checkboxes-cell,.operations)",function(e) {
+        // remove = true;
+        e.preventDefault();
+        let data = tableUsuarios.row( $(this).parents('tr') ).data();
+        $.post("/user/getUser", {_id: data[0]}, function(data) {
+            let dni, email, celular = "No Posee", fijo = "No Posee", usuario_desde, whatsapp = false, facebook = false, twitter = false;
+            usuario_desde = data.createdAt;
+            if(data.local) {
+                dni = data.local.dni || "No Posee";
+                email = data.local.email || "No Posee";
+                celular = data.local.celular || "No Posee";
+                fijo = data.local.fijo || "No Posee";
+            } else {
+                if(data.facebook) {
+                    dni = data.facebook.dni || "No Posee";
+                    email = data.facebook.email || "No Posee";
+                    facebook = true;
+                }
+            }
+
+            if(data.twitter && data.twitter.token) {
+                twitter = true;
+            }
+
+            whatsapp = data.CheckWhatsapp || false;
+
+            $("#detailInfo").empty().html(`
+                <div class='row'>
+                    <div class='col-12'>
+                        <p class='float-left'><span class="font-weight-bold">Registrado el:</span> ${moment(usuario_desde).format("DD/MM/YYYY")} a las ${moment(usuario_desde).format("HH:mm")}</p>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col-12'>
+                        <p><span class="font-weight-bold">DNI:</span> ${ dni  }</p>
+                        <p><span class="font-weight-bold">Email:</span> ${ email  }</p>
+                        <p><span class="font-weight-bold">Celular:</span> ${ celular  }</p>
+                        <p><span class="font-weight-bold">Fijo:</span> ${ fijo  }</p>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col-12'>
+                        <span class="font-weight-bold">Redes: </span>
+                        <i class="fab fa-facebook text-info ${facebook ? 'visible' : 'hide'}"></i>
+                        <i class="fab fa-twitter text-info ${twitter ? 'visible' : 'hide'}"></i>
+                        <i class="fab fa-whatsapp text-success ${whatsapp ? 'visible' : 'hide'}"></i>
+                    </div>
+                </div>
+            `
+            );
+            $("#modalDetail").modal();
+        })
+        .fail(function(data) {
+            alert('error');
+        });
+    });
+
+
+    ///////////////////////////////////////////////////////////////////
+    // var moveLeft = 0;
+    // var moveDown = 0;
+    // $("#table-container").on("hover", "td:not(.dt-checkboxes-cell,.operations)", function (e) {
+
+    //     // var target = '#' + ($(this).attr('data-popbox'));
+    //     var target = '#pop1';
+    //     $(target).show();
+    //     moveLeft = $(this).outerWidth();
+    //     moveDown = ($(target).outerHeight() / 2);
+    // }, function () {
+    //     // var target = '#' + ($(this).attr('data-popbox'));
+    //     var target = '#pop1';
+    //     if (!($("#table-container td:not(.dt-checkboxes-cell,.operations)").hasClass("show"))) {
+    //         $(target).hide();
+    //     }
+    // });
+
+    // $("#table-container").on("mousemove", "td:not(.dt-checkboxes-cell,.operations)", function (e) {
+    //     // var target = '#' + ($(this).attr('data-popbox'));
+    //     var target = '#pop1';
+    //     leftD = e.pageX + parseInt(moveLeft);
+    //     maxRight = leftD + $(target).outerWidth();
+    //     windowLeft = $(window).width() - 40;
+    //     windowRight = 0;
+    //     maxLeft = e.pageX - (parseInt(moveLeft) + $(target).outerWidth() + 20);
+
+    //     if (maxRight > windowLeft && maxLeft > windowRight) {
+    //         leftD = maxLeft;
+    //     }
+
+    //     topD = e.pageY - parseInt(moveDown);
+    //     maxBottom = parseInt(e.pageY + parseInt(moveDown) + 20);
+    //     windowBottom = parseInt(parseInt($(document).scrollTop()) + parseInt($(window).height()));
+    //     maxTop = topD;
+    //     windowTop = parseInt($(document).scrollTop());
+    //     if (maxBottom > windowBottom) {
+    //         topD = windowBottom - $(target).outerHeight() - 20;
+    //     } else if (maxTop < windowTop) {
+    //         topD = windowTop + 20;
+    //     }
+
+    //     $(target).css('top', topD).css('left', leftD);
+    // });
+    // $("#table-container").on("click", "td:not(.dt-checkboxes-cell,.operations)",function (e) {
+    //     // var target = '#' + ($(this).attr('data-popbox'));
+    //     var target = '#pop1';
+    //     if (!($(this).hasClass("show"))) {
+    //         $(target).show();
+    //     }
+    //     $(this).toggleClass("show");
+    // });
+
+    /////////////////////////////////////////////////////////////////
+
+    // var moveLeft = 0;
+    // var moveDown = 0;
+    // $('a.popper').hover(function (e) {
+
+    //     // var target = '#' + ($(this).attr('data-popbox'));
+    //     var target = '#pop1';
+    //     $(target).show();
+    //     moveLeft = $(this).outerWidth();
+    //     moveDown = ($(target).outerHeight() / 2);
+    // }, function () {
+    //     var target = '#' + ($(this).attr('data-popbox'));
+    //     if (!($("a.popper").hasClass("show"))) {
+    //         $(target).hide();
+    //     }
+    // });
+
+    // $('a.popper').mousemove(function (e) {
+    //     // var target = '#' + ($(this).attr('data-popbox'));
+    //     var target = '#pop1';
+    //     leftD = e.pageX + parseInt(moveLeft);
+    //     maxRight = leftD + $(target).outerWidth();
+    //     windowLeft = $(window).width() - 40;
+    //     windowRight = 0;
+    //     maxLeft = e.pageX - (parseInt(moveLeft) + $(target).outerWidth() + 20);
+
+    //     if (maxRight > windowLeft && maxLeft > windowRight) {
+    //         leftD = maxLeft;
+    //     }
+
+    //     topD = e.pageY - parseInt(moveDown);
+    //     maxBottom = parseInt(e.pageY + parseInt(moveDown) + 20);
+    //     windowBottom = parseInt(parseInt($(document).scrollTop()) + parseInt($(window).height()));
+    //     maxTop = topD;
+    //     windowTop = parseInt($(document).scrollTop());
+    //     if (maxBottom > windowBottom) {
+    //         topD = windowBottom - $(target).outerHeight() - 20;
+    //     } else if (maxTop < windowTop) {
+    //         topD = windowTop + 20;
+    //     }
+
+    //     $(target).css('top', topD).css('left', leftD);
+    // });
+    // $('a.popper').click(function (e) {
+    //     // var target = '#' + ($(this).attr('data-popbox'));
+    //     var target = '#pop1';
+    //     if (!($(this).hasClass("show"))) {
+    //         $(target).show();
+    //     }
+    //     $(this).toggleClass("show");
+    // });
 });

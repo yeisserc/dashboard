@@ -52,10 +52,10 @@ app.get('/', function(req, res) {
   return res.redirect('/user');
 });
 app.use('/auth', authRoutes);
-app.use('/user', passport.authenticationMiddleware, userRoutes);
-// app.use('/user', userRoutes);
-app.use('/category', passport.authenticationMiddleware, categoryRoutes);
-// app.use('/category', categoryRoutes);
+// app.use('/user', passport.authenticationMiddleware, userRoutes);
+app.use('/user', userRoutes);
+// app.use('/category', passport.authenticationMiddleware, categoryRoutes);
+app.use('/category', categoryRoutes);
 
 // starting the server
 app.listen(app.get('port'), 'juntosporsantafe.com', () => {
