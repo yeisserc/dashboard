@@ -26,34 +26,39 @@
     #table-container td:not(.dt-checkboxes-cell):not(.operations) {
       cursor: pointer;
     }
-    /* .popbox {
-      display: none;
-      position: absolute;
-      z-index: 99999;
-      width: 400px;
-      padding: 10px;
-      background: #EEEFEB;
-      color: #000000;
-      border: 1px solid #4D4F53;
-      margin: 0px;
-      -webkit-box-shadow: 0px 0px 5px 0px rgba(164, 164, 164, 1);
-      box-shadow: 0px 0px 5px 0px rgba(164, 164, 164, 1);
-    }
-    .popbox h2 {
-        background-color: #4D4F53;
-        color: #E3E5DD;
-        font-size: 14px;
-        display: block;
-        width: 100%;
-        margin: -10px 0px 8px -10px;
-        padding: 5px 10px;
-    } */
+
     i.visible {
       display: contents;
       font-size: 1.4rem;
     }
     i.hide {
       display: none;
+    }
+
+    /*    Tags  */
+    .tag {
+      font-size: 14px;
+      padding: .3em .4em .4em;
+      margin: 0 .1em;
+    }
+    .tag a {
+      color: #bbb;
+      cursor: pointer;
+      opacity: 0.6;
+    }
+    .tag a:hover {
+      opacity: 1.0
+    }
+    .tag .remove {
+      vertical-align: bottom;
+      top: 0;
+    }
+    .tag a {
+      margin: 0 0 0 .3em;
+    }
+    .tag a .glyphicon-white {
+      color: #fff;
+      margin-bottom: 2px;
     }
   </style>
 </head>
@@ -79,42 +84,6 @@
         </div>
       </div>
       <div class="sidebar-wrapper" id="sidebar-wrapper">
-        <!-- <div class="user">
-          <div class="photo">
-            <img src="/assets/img/james.jpg" />
-          </div>
-          <div class="info">
-            <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-              <span>
-                James Amos
-                <b class="caret"></b>
-              </span>
-            </a>
-            <div class="clearfix"></div>
-            <div class="collapse" id="collapseExample">
-              <ul class="nav">
-                <li>
-                  <a href="#">
-                    <span class="sidebar-mini-icon">MP</span>
-                    <span class="sidebar-normal">My Profile</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <span class="sidebar-mini-icon">EP</span>
-                    <span class="sidebar-normal">Edit Profile</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <span class="sidebar-mini-icon">S</span>
-                    <span class="sidebar-normal">Settings</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div> -->
         <ul class="nav">
           <li>
             <a href="/user/">
@@ -212,7 +181,6 @@
                 <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
                   <thead>
                     <tr>
-                      <!-- <th><input type="checkbox" class="selectAll"></th> -->
                       <th></th>
                       <th>Nombre</th>
                       <th>Apellido</th>
@@ -252,37 +220,6 @@
         </div>
         <!-- This is a popbox test. <a href="#" class="popper" data-popbox="pop1">Hover here</a> to see how it works. -->
       </div>
-      <!-- <footer class="footer">
-        <div class=" container-fluid ">
-          <nav>
-            <ul>
-              <li>
-                <a href="https://www.creative-tim.com">
-                  Creative Tim
-                </a>
-              </li>
-              <li>
-                <a href="http://presentation.creative-tim.com">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="http://blog.creative-tim.com">
-                  Blog
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <div class="copyright" id="copyright">
-            &copy;
-            <script>
-              document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
-            </script>, Designed by
-            <a href="https://www.invisionapp.com" target="_blank">Invision</a>. Coded by
-            <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
-          </div>
-        </div>
-      </footer> -->
     </div>
   </div>
   <!-- Modal -->
@@ -346,35 +283,6 @@
       </div>
     </div>
   </div>
-  <!-- <div id="pop1" class="popbox">
-      <h2>Job Info Search</h2>
- 
-      <h2>WRKNo : <input type="text"  /></h2>
- 
-      <h2>Result</h2>
- 
-      <p>Customer Name :
-          <input type="text" />
-      </p>
-      <p>Caller Number :
-          <input type="text" />
-      </p>
-      <p>Complosed :
-          <input type="text" />
-      </p>
-      <p>Cate :
-          <input type="text" />
-      </p>
-      <p>Det :
-          <input type="text" />
-      </p>
-      <p>Feedback :
-          <input type="text" />
-      </p>
-      <p>WRKNo :
-          <input type="text" />
-      </p>
-  </div> -->
   <!--   Core JS Files   -->
   <script src="/assets/js/core/jquery.min.js"></script>
   <script src="/assets/js/core/popper.min.js"></script>
@@ -420,51 +328,6 @@
   <!-- <script src="/assets/js/now-ui-dashboard.min.js?v=1.4.0" type="text/javascript"></script> -->
   <!-- users -->
   <script src="/assets/js/users.js"></script>
-  <script>
-    // $(document).ready(function() {
-    //   $('#datatable').DataTable({
-    //     "pagingType": "full_numbers",
-    //     "lengthMenu": [
-    //       [10, 25, 50, -1],
-    //       [10, 25, 50, "All"]
-    //     ],
-    //     responsive: true,
-    //     language: {
-    //       search: "_INPUT_",
-    //       searchPlaceholder: "Search records",
-    //     }
-
-    //   });
-
-    //   var table = $('#datatable').DataTable();
-
-    //   // Edit record
-    //   table.on('click', '.edit', function() {
-    //     $tr = $(this).closest('tr');
-    //     if ($($tr).hasClass('child')) {
-    //       $tr = $tr.prev('.parent');
-    //     }
-
-    //     var data = table.row($tr).data();
-    //     alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
-    //   });
-
-    //   // Delete a record
-    //   table.on('click', '.remove', function(e) {
-    //     $tr = $(this).closest('tr');
-    //     if ($($tr).hasClass('child')) {
-    //       $tr = $tr.prev('.parent');
-    //     }
-    //     table.row($tr).remove().draw();
-    //     e.preventDefault();
-    //   });
-
-    //   //Like record
-    //   table.on('click', '.like', function() {
-    //     alert('You clicked on Like button');
-    //   });
-    // });
-  </script>
 </body>
 
 </html>

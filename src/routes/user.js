@@ -67,7 +67,7 @@ router.get('/datatables-data', async (req, res) => {
             } else {
                 obj.push("");
             }
-            console.log('twitter', users[i].twitter)
+            
             if(users[i].twitter && users[i].twitter.token) {
                 obj.push(true);
             } else {
@@ -75,33 +75,9 @@ router.get('/datatables-data', async (req, res) => {
             }
             
             obj.push(users[i].cats || "");
-            obj.push(users[i].active || true);
+            obj.push(users[i].active);
             usersNormalized.push(obj);
         }
-
-        // editedUsers = users.map(function(value, index, array) {
-        //   console.log(array[index]);
-        //   if(!array[index].local.nombre) {
-        //     array[index].local.nombre = "";
-        //   }
-        //   if(!array[index].local.apellido) {
-        //     value.local.apellido = "";
-        //   }
-        //   if(!array[index].local.id_ciudad) {
-        //     array[index].local.id_ciudad = "";
-        //   }
-        //   return array[index];
-        // });
-        // users = [
-        //   {
-        //     local: {
-        //       nombre: '',
-        //       apellido: '',
-        //       id_ciudad: ''
-        //     }
-        //   }
-        // ];
-        // console.log(usersNormalized);
     } catch(e) {
         console.log('Ha ocurrido un error', e);
         return res.json({error: 'Ha ocurrido un error'});
@@ -117,17 +93,6 @@ router.post('/addCategory', [
     if (!errors.isEmpty()) {
         return res.status(422).json({ errors: errors.array() });
     }
-    // console.log('ids', req.body.ids);
-    // User.find({ '_id': { $in: req.body.ids } }).then(
-    //     (list) => {
-    //         console.log(list);
-    //         return res.json({result: "OK"});
-    //     }
-    // );
-
-    // let cat = await Categoria.findById(req.body.categoria);
-    // console.log('cat', cat);
-
     let query = {};
 
     if(!req.body.selectAll) {
@@ -149,8 +114,10 @@ router.get('/cargar-categorias', async function(req, res) {
     return res.json(cats);
 });
 
-router.post('/desactivateUser',  [
+router.post('/changeUserStatus',  [
     check('_id')
+        .not().isEmpty().withMessage('Por favor complete este campo'),
+    check('active')
         .not().isEmpty().withMessage('Por favor complete este campo')
 ], async (req, res) => {
     // Finds the validation errors in this request and wraps them in an object with handy functions
@@ -158,9 +125,10 @@ router.post('/desactivateUser',  [
     if (!errors.isEmpty()) {
         return res.status(422).json({ errors: errors.array() });
     }
-
+    console.log('status', req.body.active);
     let user = await User.findById(req.body._id);
-    user.active = false;
+    console.log('user', user);
+    user.active = req.body.active;
     user.save().then(
         () => {
             return res.json({result: "OK"});

@@ -131,11 +131,6 @@ $(function() {
                         showAlert("danger", "Ha ocurrido un error añadiendo la categoria, por favor intente nuevamente");
                     }
                 }
-                // if(data.responseJSON && data.responseJSON.errors) {
-                //     for(let i = 0; i < data.responseJSON.errors.length; i++) {
-                //         $(`#${data.responseJSON.errors[i].param}`).addClass("has-error").prop("title", data.responseJSON.errors[i].msg);
-                //     }
-                // }
             });
         }
     });

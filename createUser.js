@@ -15,16 +15,4 @@ bcrypt.hash(pass, saltRounds, function(err, hash) {
     }
 
     console.log(hash);
-    
-    // let sql = "INSERT INTO `usuario` (`user`, `password`) VALUES (?, ?)";
-    // db.query(sql, [user, hash], (error, result) => {
-    //     if(error) {
-    //         console.log(error);
-    //         process.exit(0);
-    //     }
-    //     else {
-    //         console.log('Usuario creado correctamente');
-    //         process.exit(0);
-    //     }
-    // });
 });

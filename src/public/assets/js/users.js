@@ -1,54 +1,9 @@
 $(function() {
     let tableUsuarios;
     let selectAll = false;
-    // let fieldsNames = [
-    //     {
-    //         "defaultContent": ""
-    //     },
-    //     {
-    //         data: 'local.nombre',
-    //         "defaultContent": "No asignado"
-    //     },
-    //     {
-    //         data: 'local.apellido',
-    //         "defaultContent": "No asignado"
-    //     },
-    //     {
-    //         data: 'local.id_ciudad',
-    //         "defaultContent": "No asignado"
-    //     }
-    // ];
-    // let fieldsNames = [
-    //     {
-    //         "defaultContent": "no"
-    //     },
-    //     {
-    //         "defaultContent": "No asignado"
-    //     },
-    //     {
-    //         "defaultContent": "No asignado"
-    //     },
-    //     {
-    //         "defaultContent": "No asignado"
-    //     },
-    //     {
-    //         "defaultContent": "No asignado"
-    //     }
-    // ];
 
     tableUsuarios = $("#datatable").DataTable({
         "ajax": `/user/datatables-data`,
-        // "columns": fieldsNames,
-        // columnDefs: [ {
-        //     orderable: false,
-        //     className: 'select-checkbox',
-        //     width: "5%",
-        //     targets:   0
-        // } ],
-        // select: {
-        //     style:    'os',
-        //     selector: 'td:first-child'
-        // },
         'columnDefs': [
             {
                'targets': 0,
@@ -70,10 +25,15 @@ $(function() {
                 "defaultContent": "No asignado",
                 "render": function ( data, type, row ) {
                     let catsNombres = [];
+                    let display = "";
                     for(let i = 0; i < data.length; i++) {
-                        catsNombres.push(data[i].nombre);
+                        // catsNombres.push(data[i].nombre);
+                        display += `<span class="badge badge-pill badge-primary">${data[i].nombre} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></span>`
                     }
-                    return catsNombres.join(", ");
+                    // return `<input id="prueba" type="text" value="${catsNombres.join(",")}" class="tagsinput" data-role="tagsinput" data-color="danger" />`
+                    
+                    // return catsNombres.join(",");
+                    return display;
                 },
             },
             {
@@ -81,7 +41,7 @@ $(function() {
                 // `data` option, which defaults to the column being worked with, in
                 // this case `data: 0`.
                 "render": function ( data, type, row ) {
-                    return data ? "Activo" : "Inactivo";
+                    return data == true ? "Activo" : "Inactivo";
                 },
                 "targets": 6
             },
@@ -91,11 +51,24 @@ $(function() {
                 // this case `data: 0`.
                 className: "operations",
                 "render": function ( data, type, row ) {
-                    return '<a href="#" class="btn btn-round btn-danger btn-icon btn-sm desactivate"><i class="fas fa-times"></i></a>';
+                    // console.log('active', row[6]);
+                    if(row[6]) {
+                        return '<a href="#" class="btn btn-round btn-danger btn-icon btn-sm desactivate"><i class="fas fa-times"></i></a>';
+                    } else {
+                        return '<a href="#" class="btn btn-round btn-info btn-icon btn-sm activate"><i class="fas fa-play"></i></a>';
+                    }
                 },
                 "targets": 7
             }
          ],
+         createdRow: function (row, data, index) {
+            //
+            // if the second column cell is blank apply special formatting
+            //
+            if (!data[6]) {
+                $(row).addClass("not-selectable");
+            }
+        },
          'select': {
             'style': 'multi'
          },
@@ -143,10 +116,10 @@ $(function() {
                     tag: null
                 }
             }
+        },
+        initComplete: function( settings, json ) {
         }
     });
-
-    
 
     $("#btn-modal-aceptar").click(function() {
         console.log("entro");
@@ -174,44 +147,45 @@ $(function() {
         })
         .fail(function(data) {
             showAlert("danger", "Ha ocurrido un error");
-            // if(data.responseJSON && data.responseJSON.errors) {
-            //     for(let i = 0; i < data.responseJSON.errors.length; i++) {
-            //         $(`#label-${data.responseJSON.errors[i].param}-edit`).addClass("text-danger");
-            //         $(`#${data.responseJSON.errors[i].param}-edit`).addClass("is-invalid");
-            //         $(`#div-text-error-${data.responseJSON.errors[i].param}-edit`).show();
-            //         $(`#text-error-${data.responseJSON.errors[i].param}-edit`).text(data.responseJSON.errors[i].msg);
-            //     }
-            // }
         });
     });
-
-    // $(".selectAll").on( "click", function(e) {
-    //     if ($(this).is( ":checked" )) {
-    //         tableUsuarios.rows(  ).select();        
-    //     } else {
-    //         tableUsuarios.rows(  ).deselect(); 
-    //     }
-    // });
     $(".dt-checkboxes-select-all > input[type='checkbox']").on( "click", function(e) {
         selectAll = !selectAll;
     });
 
     $("#table-container").on("click", ".desactivate",function(e) {
-        // remove = true;
         e.preventDefault();
         var data = tableUsuarios.row( $(this).parents('tr') ).data();
-        // console.log(data[0]);
         $("#_id-edit").val(data[0]);
         $("#nombre-delete-text").text(data[1] + " " + data[2]);
         $("#modalDelete").modal();
     });
 
+    $("#table-container").on("click", ".activate",function(e) {
+        // remove = true;
+        e.preventDefault();
+        var data = tableUsuarios.row( $(this).parents('tr') ).data();
+        // console.log(data[0]);
+        $.post( "/user/changeUserStatus", { _id: data[0], active: true }, function() {
+            // $('#modalDelete').modal('hide');
+
+            showAlert("success", "Se ha activado correctamente el usuario");
+
+            tableUsuarios.ajax.reload();
+        })
+        .fail(function(data) {
+            // $('#modalDelete').modal('hide');
+            showAlert("danger", "Ha ocurrido un error activando el usuario, por favor intente nuevamente");
+        });
+    });
+
     $("#btn-modal-delete").click(function() {
         let obj = {
-            _id: $("#_id-edit").val()
+            _id: $("#_id-edit").val(),
+            active: false
         };
 
-        $.post( "/user/desactivateUser", obj, function() {
+        $.post( "/user/changeUserStatus", obj, function() {
             $('#modalDelete').modal('hide');
 
             showAlert("success", "Se ha desactivado correctamente el usuario");
@@ -281,110 +255,18 @@ $(function() {
         });
     });
 
+    function showAlert(type, text) {
+        let rem = "info";
+        
+        if(type == "success") {
+            rem = "danger"
+        }
 
-    ///////////////////////////////////////////////////////////////////
-    // var moveLeft = 0;
-    // var moveDown = 0;
-    // $("#table-container").on("hover", "td:not(.dt-checkboxes-cell,.operations)", function (e) {
+        $("#alert-text").text(text);
+        $("#alert").removeClass( `alert-${rem}` ).addClass( `alert-${type}` ).show();
 
-    //     // var target = '#' + ($(this).attr('data-popbox'));
-    //     var target = '#pop1';
-    //     $(target).show();
-    //     moveLeft = $(this).outerWidth();
-    //     moveDown = ($(target).outerHeight() / 2);
-    // }, function () {
-    //     // var target = '#' + ($(this).attr('data-popbox'));
-    //     var target = '#pop1';
-    //     if (!($("#table-container td:not(.dt-checkboxes-cell,.operations)").hasClass("show"))) {
-    //         $(target).hide();
-    //     }
-    // });
-
-    // $("#table-container").on("mousemove", "td:not(.dt-checkboxes-cell,.operations)", function (e) {
-    //     // var target = '#' + ($(this).attr('data-popbox'));
-    //     var target = '#pop1';
-    //     leftD = e.pageX + parseInt(moveLeft);
-    //     maxRight = leftD + $(target).outerWidth();
-    //     windowLeft = $(window).width() - 40;
-    //     windowRight = 0;
-    //     maxLeft = e.pageX - (parseInt(moveLeft) + $(target).outerWidth() + 20);
-
-    //     if (maxRight > windowLeft && maxLeft > windowRight) {
-    //         leftD = maxLeft;
-    //     }
-
-    //     topD = e.pageY - parseInt(moveDown);
-    //     maxBottom = parseInt(e.pageY + parseInt(moveDown) + 20);
-    //     windowBottom = parseInt(parseInt($(document).scrollTop()) + parseInt($(window).height()));
-    //     maxTop = topD;
-    //     windowTop = parseInt($(document).scrollTop());
-    //     if (maxBottom > windowBottom) {
-    //         topD = windowBottom - $(target).outerHeight() - 20;
-    //     } else if (maxTop < windowTop) {
-    //         topD = windowTop + 20;
-    //     }
-
-    //     $(target).css('top', topD).css('left', leftD);
-    // });
-    // $("#table-container").on("click", "td:not(.dt-checkboxes-cell,.operations)",function (e) {
-    //     // var target = '#' + ($(this).attr('data-popbox'));
-    //     var target = '#pop1';
-    //     if (!($(this).hasClass("show"))) {
-    //         $(target).show();
-    //     }
-    //     $(this).toggleClass("show");
-    // });
-
-    /////////////////////////////////////////////////////////////////
-
-    // var moveLeft = 0;
-    // var moveDown = 0;
-    // $('a.popper').hover(function (e) {
-
-    //     // var target = '#' + ($(this).attr('data-popbox'));
-    //     var target = '#pop1';
-    //     $(target).show();
-    //     moveLeft = $(this).outerWidth();
-    //     moveDown = ($(target).outerHeight() / 2);
-    // }, function () {
-    //     var target = '#' + ($(this).attr('data-popbox'));
-    //     if (!($("a.popper").hasClass("show"))) {
-    //         $(target).hide();
-    //     }
-    // });
-
-    // $('a.popper').mousemove(function (e) {
-    //     // var target = '#' + ($(this).attr('data-popbox'));
-    //     var target = '#pop1';
-    //     leftD = e.pageX + parseInt(moveLeft);
-    //     maxRight = leftD + $(target).outerWidth();
-    //     windowLeft = $(window).width() - 40;
-    //     windowRight = 0;
-    //     maxLeft = e.pageX - (parseInt(moveLeft) + $(target).outerWidth() + 20);
-
-    //     if (maxRight > windowLeft && maxLeft > windowRight) {
-    //         leftD = maxLeft;
-    //     }
-
-    //     topD = e.pageY - parseInt(moveDown);
-    //     maxBottom = parseInt(e.pageY + parseInt(moveDown) + 20);
-    //     windowBottom = parseInt(parseInt($(document).scrollTop()) + parseInt($(window).height()));
-    //     maxTop = topD;
-    //     windowTop = parseInt($(document).scrollTop());
-    //     if (maxBottom > windowBottom) {
-    //         topD = windowBottom - $(target).outerHeight() - 20;
-    //     } else if (maxTop < windowTop) {
-    //         topD = windowTop + 20;
-    //     }
-
-    //     $(target).css('top', topD).css('left', leftD);
-    // });
-    // $('a.popper').click(function (e) {
-    //     // var target = '#' + ($(this).attr('data-popbox'));
-    //     var target = '#pop1';
-    //     if (!($(this).hasClass("show"))) {
-    //         $(target).show();
-    //     }
-    //     $(this).toggleClass("show");
-    // });
+        setTimeout(function() {
+            $("#alert").fadeOut();
+        }, 2000);
+    }
 });

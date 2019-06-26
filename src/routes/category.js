@@ -20,9 +20,6 @@ router.get('/datatables-data', async (req, res) => {
 
     let query = {};
     if(req.query.search.value != null && req.query.search.value != "") {
-        // query = {
-        //   $or: [{cedula: req.query.search.value}, {civ: req.query.search.value}, {nombre: req.query.search.value}]
-        // }
         let value = req.query.search.value;
         query = {
         $or: [{nombre: new RegExp(value, "i")}, {descripcion: new RegExp(value, "i")}]
@@ -34,31 +31,7 @@ router.get('/datatables-data', async (req, res) => {
     let categorias;
     try {
         categorias = await Categoria.find( query ).limit(length).skip(start).lean().exec();
-        // editedUsers = users.map(function(value, index, array) {
-        //   console.log(array[index]);
-        //   if(!array[index].local.nombre) {
-        //     array[index].local.nombre = "";
-        //   }
-        //   if(!array[index].local.apellido) {
-        //     value.local.apellido = "";
-        //   }
-        //   if(!array[index].local.id_ciudad) {
-        //     array[index].local.id_ciudad = "";
-        //   }
-        //   return array[index];
-        // });
-        // users = [
-        //   {
-        //     local: {
-        //       nombre: '',
-        //       apellido: '',
-        //       id_ciudad: ''
-        //     }
-        //   }
-        // ];
-        console.log(categorias);
     } catch(e) {
-        console.log('Ha ocurrido un error', e);
         return res.json({error: 'Ha ocurrido un error'});
     }
     return res.json({data: categorias, recordsTotal, recordsFiltered});

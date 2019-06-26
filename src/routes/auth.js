@@ -6,7 +6,6 @@ const passport = require('passport');
 router.get('/logout', function(req, res){
   req.logout();
   return res.redirect("/auth/login");
-  //res.json({message: "succesfully"});
 });
 
 
@@ -22,11 +21,6 @@ router.get('/login', function(req, res){
 router.post('/login', function (req, res, next) {
   passport.authenticate('local', (err, user, info) => {
     if (err) {
-        console.log('error1', err);
-        /*return res.status(400).json({
-            message: info ? info.message : 'Login failed',
-            user   : user
-        });*/
         return res.render("admin/login", {error: "Error en el servidor. Intente Nuevamente"});
     }
     if(!user) {
