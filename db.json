@@ -1,0 +1,27 @@
+{
+    "status": "ok",
+    "result": [
+        {
+            "id": "",
+            "distrito": "21",
+            "matricula": "27518161",
+            "sexo": "M",
+            "clase": "1979",
+            "apellido": "VINET",
+            "nombre": "RAUL ENRIQUE",
+            "domicilio": "LAPRIDA 3475",
+            "ejemplar": "DNI-EA",
+            "secc_nacional": "9",
+            "secc": "9",
+            "circu": "10",
+            "mesa": "2265",
+            "ausente": "",
+            "orden": "133",
+            "cue_id": "",
+            "path_foto": "",
+            "desest": "E.E.S.O.N°263 ALFONSO GRILLI",
+            "direst": "BALCARCE 1251",
+            "locest": "SANTA FE"
+        }
+    ]
+}
